@@ -1,0 +1,335 @@
+/*************************************/
+/* PRODUCT FILTER NAVIGATION */
+/*************************************/
+
+.product-filter {
+    margin-bottom: 4.8rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2.6rem;
+    border-radius: 10rem;
+    transition: all 0.5s;
+}
+
+.filter-btn,
+.srch {
+    list-style-type: none;
+    display: flex;
+}
+
+.product-filter button,
+.dropdown-btn button {
+    padding: 1.2rem;
+    border: none;
+    border-radius: 10rem;
+    color: #e3e3e3;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: 600;
+    transition: all 0.5s;
+}
+
+.product-filter button:hover,
+.dropdown-btn button:hover {
+    cursor: pointer;
+    transition: all 0.5s;
+    color: #f0f0f0;
+}
+
+.filter-btn > li {
+    position: relative;
+}
+
+.filter-btn > li:hover .dropdown-btn {
+    display: flex;
+}
+
+.dropdown-btn {
+    display: flex;
+    display: none;
+    position: absolute;
+    border: none;
+    border-radius: 10rem;
+    top: 30%;
+    left: 39%;
+    flex-direction: row;
+    background-color: transparent;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border: 2px solid #fff;
+}
+
+.dropdown-btn button {
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+.product-filter .filter-btn > li:nth-child(8):hover .dropdown-btn {
+    display: flex; /* Adjusted to 'flex' to match your display property in the dropdown-btn */
+    position: relative;
+}
+
+.filter-btn > li:nth-child(8):hover .dropdown-btn button {
+    background-color: #00d5ff;
+    position: relative;
+}
+
+/* .filter-btn > li:nth-child(8):focus-within > .dropdown-btn {
+    display: flex;
+} */
+/* *:focus-within > .dropdown-btn {
+    display: flex;
+} */
+
+.filter-item.active {
+    color: #ffffff;
+    border-color: #ffffff;
+    background-color: #000000;
+    transition: all 1s;
+}
+
+.filter-item.active:hover {
+    box-shadow: inset 0 0 0 2px #ececec;
+    /* color: #d4d4d4; */
+    transition: all 1s;
+}
+
+.filter-all,
+.filter-all.active {
+    display: none;
+}
+
+.product-filter input[type="text"] {
+    padding: 1rem;
+    width: 24rem;
+    height: 3.2rem;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 10rem;
+    background-color: #e9e2e2;
+    margin-left: 0;
+    margin: 1rem 0 1rem 0;
+}
+
+/*************************************/
+/* PRODUCTS SECTION */
+/*************************************/
+
+.product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3.2rem;
+    margin-bottom: 9.6rem;
+}
+
+/* .product-item {
+    text-align: center;
+    border-radius: 9px;  
+    box-shadow: 0px 0px 4px 1px black;
+    overflow: hidden;
+    position: relative;
+} */
+
+.product-card {
+    width: 32rem;
+    position: relative;
+    box-shadow: 0 0.2rem 0.7rem #dfdfdf;
+    margin: 3.2rem 0.8rem;
+    background: #fafafa;
+    box-shadow: 5px 5px 10px #0400007b;
+    border-radius: 2rem;
+    overflow: hidden;
+    transition: all 1s ease;
+}
+
+.coupons > .product-card > .pro-img {
+    background-color: #141313;
+}
+
+.product-card:hover {
+    transform: scale(1.1);
+    transition: all 1s ease;
+}
+
+.rating {
+    position: absolute;
+    right: 0;
+    top: 2rem;
+    text-transform: uppercase;
+    /* font-size: 13px; */
+    font-weight: 600;
+    background: #ababab5e;
+    font-size: 1.6rem;
+    color: #000;
+    padding: 0.2rem 1rem;
+    border-radius: 3rem;
+    margin-right: 1rem;
+}
+
+.pro-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24rem;
+    background: #f0f0f0;
+}
+
+.pro-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.pro-details {
+    padding: 1rem;
+    background-color: #eceaea;
+}
+
+.pro-details h3 {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1.8rem;
+    text-transform: uppercase;
+    color: #363636;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.pro-details p {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    margin-bottom: 1.8rem;
+    color: #999;
+}
+
+.pro-others {
+    overflow: hidden;
+    border-top: 2px solid #000000;
+    background-color: #eceaea;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 2.4rem;
+    border-bottom-right-radius: 2.4rem;
+    overflow: hidden;
+}
+
+.pro-others div {
+    float: left;
+    width: 50%;
+}
+
+.pro-price {
+    font-size: 2.4rem;
+    color: #000000;
+    font-weight: 600;
+}
+
+.pro-price small {
+    font-size: 80%;
+    font-weight: 500;
+    text-decoration: line-through;
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: #7c7c7c;
+}
+
+.rate-icon {
+    height: 1.6rem;
+    width: 1.6rem;
+    align-items: center;
+    color: #00db00;
+}
+
+/* .btn {
+    padding: 1.6rem;
+} */
+
+.btn--form {
+    border-radius: 3rem;
+    font-size: 1.6rem;
+    padding: 1.2rem;
+    color: #fff;
+    background-color: #0080ff;
+    align-self: end;
+}
+
+.btn--form:hover {
+    color: #fff;
+    background-color: #0037ff;
+}
+
+.img-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: beige;
+    background-color: rgba(0, 0, 0, 0.649);
+    width: 100%;
+    height: 20%;
+}
+
+.img-title span {
+    display: inline-block;
+    margin-top: 0.8rem;
+}
+
+.product-item.show {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.product-item.hide {
+    display: none;
+}
+
+@media only screen and (max-width: 425px) {
+    /* Smartphone view: 1 tile */
+    .product-item {
+        width: 100%;
+        align-items: center;
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 426px) {
+    /* Tablet view: 2 tiles */
+    .product-item {
+        width: 50%;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+    /* Small desktop / ipad view: 3 tiles */
+    .product-item {
+        width: 35%;
+        align-items: center;
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 1440px) and (min-width: 1024px) {
+    /* Medium desktop: 4 tiles */
+    .product-item {
+        width: 25%;
+        align-items: center;
+        display: flex;
+    }
+}

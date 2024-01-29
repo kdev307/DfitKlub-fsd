@@ -1,0 +1,75 @@
+form {
+    background-color: rgba(206, 206, 206, 0.75);
+    padding: 4rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.545);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+input {
+    width: 40rem;
+    height: 5rem;
+    font-size: 1.8rem;
+    padding: 1rem;
+    margin-bottom: 1.6rem;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem inset rgb(106, 106, 106);
+}
+
+button {
+    background-color: #04aa6d;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
+    margin-left: 13rem;
+    text-align: center;
+    font-size: 2.4rem;
+}
+
+button:hover {
+    background: #057049;
+}
+
+i {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: #00da0f;
+}
+
+a:hover {
+    /* text-decoration: underline; */
+    color: #00ff00;
+    transition: all 0.5ms;
+}
+
+.form-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 1rem; */
+}
+
+.sub-heading {
+    color: antiquewhite;
+    text-transform: none;
+    font-family: "Poppins", sans-serif;
+    padding-left: 0rem;
+    text-align: center;
+    padding-bottom: 3.6rem;
+}
