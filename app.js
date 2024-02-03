@@ -46,7 +46,10 @@ app.get("/index", function (req, res, next) {
 });
 
 app.get("/store", function (req, res, next) {
-    res.render("store");
+    conn.query("SELECT * FROM products", (error, results) => {
+        if (error) throw error;
+        res.render("store", { products: results });
+    });
 });
 
 app.get("/signIn", function (req, res, next) {
