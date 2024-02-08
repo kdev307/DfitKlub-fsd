@@ -5,8 +5,8 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-// var fileUpload = require("express-fileupload");
-// var { v4: uuidv4 } = require("uuid");
+var fileUpload = require("express-fileupload");
+var { v4: uuidv4 } = require("uuid");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
@@ -22,7 +22,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(fileUpload());
+app.use(fileUpload());
 app.use(express.static(path.join(__dirname, "public")));
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -58,23 +58,23 @@ app.get("/signUp", function (req, res, next) {
     res.render("signUp");
 });
 
-// app.post("/signUp", function (req, res, next) {
-//     const name = req.body.name;
-//     const address = req.body.address;
-//     const email = req.body.email;
-//     const mobile = req.body.mobile;
-//     const userName = req.body.userName;
-//     const password = req.body.password;
+app.post("/signUp", function (req, res, next) {
+    const name = req.body.name;
+    const address = req.body.address;
+    const email = req.body.email;
+    const mobile = req.body.mobile;
+    const userName = req.body.userName;
+    const password = req.body.password;
 
-//     conn.query(
-//         "INSERT INTO users (user_id, user_name, user_email, , user_mobileNo,user_usrnm,user_password, user_address) VALUES (?,?,?,?,?,?,?)",
-//         [uuidv4(), name, email, mobile, userName, password, address],
-//         function (error, results, fields) {
-//             if (error) console.log(error);
-//             else res.render("signIn");
-//         }
-//     );
-// });
+    conn.query(
+        "INSERT INTO users (user_id, user_name, user_email, , user_mobileNo,user_usrnm,user_password, user_address) VALUES (?,?,?,?,?,?,?)",
+        [uuidv4(), name, email, mobile, userName, password, address],
+        function (error, results, fields) {
+            if (error) console.log(error);
+            else res.render("signIn");
+        }
+    );
+});
 
 app.get("/signIn", function (req, res, next) {
     res.render("signIn");
