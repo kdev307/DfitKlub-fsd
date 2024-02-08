@@ -1,8 +1,8 @@
 form {
-    background-color: rgba(206, 206, 206, 0.75);
+    background-color: rgba(40, 39, 39, 0.75);
     padding: 4rem;
     border-radius: 1rem;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.545);
+    box-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.545);
 }
 
 label {
@@ -19,7 +19,7 @@ input {
     box-sizing: border-box;
     border: none;
     border-radius: 1rem;
-    box-shadow: 0 1rem 2rem inset rgb(106, 106, 106);
+    box-shadow: 0 1rem 2rem inset rgb(60, 60, 60);
 }
 
 button {
@@ -43,6 +43,7 @@ i {
     text-align: center;
     margin-top: 20px;
     font-size: 2rem;
+    color: #d8d8d8;
 }
 
 a {

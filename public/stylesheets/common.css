@@ -24,8 +24,13 @@ body {
     font-size: 1.5rem;
     background-color: #d4d4d4;
     font-family: "Poppins", sans-serif;
-    background-image: linear-gradient(to right, rgba(85, 85, 85, 0.75), rgba(69, 69, 69, 0.75)),
-        url("../images/bg.jpg");
+    background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.75),
+            rgba(25, 25, 25, 0.75),
+            rgba(0, 0, 0, 0.75)
+        ),
+        url("../images/bg-modified.jpg");
     background-repeat: round;
 }
 
@@ -98,7 +103,7 @@ ol {
 }
 
 .header {
-    color: #505050;
+    color: #cecece;
     justify-content: space-between;
     padding-left: 10rem;
     padding-right: 10rem;

@@ -35,7 +35,8 @@
 .dropdown-btn button:hover {
     cursor: pointer;
     transition: all 0.5s;
-    color: #f0f0f0;
+    background-color: #f0f0f0;
+    color: #000;
 }
 
 .filter-btn > li {
@@ -53,7 +54,7 @@
     border: none;
     border-radius: 10rem;
     top: 30%;
-    left: 39%;
+    left: 30%;
     flex-direction: row;
     background-color: transparent;
     min-width: 160px;
