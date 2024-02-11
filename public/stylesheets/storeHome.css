@@ -128,14 +128,6 @@
     margin-bottom: 9.6rem;
 }
 
-/* .product-item {
-    text-align: center;
-    border-radius: 9px;  
-    box-shadow: 0px 0px 4px 1px black;
-    overflow: hidden;
-    position: relative;
-} */
-
 .product-card {
     width: 32rem;
     /* height: 72.95rem; */
@@ -258,14 +250,14 @@
     font-weight: 600;
 }
 
-.pro-price small {
+/* .pro-price small {
     font-size: 80%;
     font-weight: 500;
     text-decoration: line-through;
     display: inline-block;
     margin-right: 0.5rem;
     color: #7c7c7c;
-}
+} */
 
 .rate-icon {
     height: 1.6rem;
@@ -273,10 +265,6 @@
     align-items: center;
     color: #00db00;
 }
-
-/* .btn {
-    padding: 1.6rem;
-} */
 
 .btn--form {
     border-radius: 3rem;
