@@ -80,6 +80,41 @@ app.get("/signIn", function (req, res, next) {
     res.render("signIn");
 });
 
+app.post("/signIn", function (req, res, next) {
+    const userName = req.body.userName;
+    const password = req.body.password;
+
+    conn.query(
+        "SELECT user_usrnm, user_password FROM users WHERE user_usrnm = ?",
+        [userName],
+        function (error, results) {
+            if (error) res.render("signIn");
+            else {
+                if (results[0].user_password === password) {
+                    conn.query(
+                        "SELECT user_id, user_name, user_usrnm FROM users WHERE user_usrnm = ?",
+                        [userName],
+                        function (error, results) {
+                            if (error) res.status(404);
+                            else {
+                                const userid = results[0].user_id;
+                                const username = results[0].user_name;
+                                const usrnm = results[0].user_usrnm;
+                                res.cookie("cookuid", userid);
+                                res.cookie("cookuname", username);
+                                res.cookie("cookusrnm", usrnm);
+                                res.redirect("/store");
+                            }
+                        }
+                    );
+                } else {
+                    res.render("signIn");
+                }
+            }
+        }
+    );
+});
+
 app.get("/adminSignIn", function (req, res, next) {
     res.render("adminSignIn");
 });

@@ -31,13 +31,6 @@
             <nav class="profile-nav">
                 <ul class="main-nav-user-list">
                     <li>
-                        <!-- <div
-                            class="main-nav-link profile-btn"
-                            onclick="showOverlay()"
-                            id="overlay-btn"
-                        >
-                            <ion-icon name="person-outline"></ion-icon>
-                        </div> -->
                         <a class="main-nav-link profile-btn" href="/signIn" target="_blank">
                             <ion-icon name="person-outline"></ion-icon>
                         </a>
@@ -51,42 +44,6 @@
             </nav>
         </header>
         <main>
-            <section class="section-overlay">
-                <div class="overlay-section" id="overlay-section">
-                    <div class="overlay-view">
-                        <div class="close-btn" onclick="hideOverlay()" id="overlay-hide">
-                            <ion-icon name="close-outline"></ion-icon>
-                        </div>
-                        <h1 class="heading-secondary">Sign In</h1>
-                        <form action="#" class="sign-in-form">
-                            <div>
-                                <label for="user-name">Username</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter your Username"
-                                    id="user-name"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label for="password">Password</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    placeholder="Enter your password"
-                                    required
-                                />
-                            </div>
-                            <button class="">Sign In</button>
-                        </form>
-                        <div class="other-sign-in">
-                            New User Registeration: <a href="signup.html">Click Here</a>
-                            <br />
-                            Admin Sign In: <a href="adminSignIn.html">Click Here</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
             <section class="product-filter">
                 <!-- <div class="product-filter"> -->
                 <ul class="filter-btn">
@@ -153,13 +110,14 @@
                             <div class="pro-img">
                                 <img
                                 src="/images/shop/<%= products[i].prod_img %>"
-                                alt="<%= products[i].prod_name %>"
+                                alt="<%= products[i].prod_name %>" id="image"
                                 />
                                 <!-- <img src="/images/shop/acc-duff-bag1.webp" alt="Image Not Supported" /> -->
                             </div>
                             <div class="pro-details">
                                 <h3><%= products[i].prod_name %></h3>
-                                <p><%= products[i].prod_description %></p>
+                                <button class="btn show-desc" id="show-description"><ion-icon name="information-circle-outline"></ion-icon></button>
+                                <p id="description" class="desc "><%= products[i].prod_description %></p>
                             </div>
                             <div class="pro-others">
                                 <div class="pro-price">$ <%= products[i].prod_price %></div>
@@ -170,7 +128,6 @@
                 <% } %>
             
                 <!-- Product Card End -->
-
             </section>
         </main>
         <footer class="footer" id="footer">
@@ -246,6 +203,6 @@
         src="// https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
     ></script>
 
-    <script src="javascripts/modalView.js"></script>
     <script src="javascripts/storeFilter.js"></script>
+    <script src="javascripts/descript.js"></script>
 </html>

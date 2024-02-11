@@ -1,16 +1,16 @@
 const filterContainer = document.querySelector(".product-filter");
 const productItems = document.querySelectorAll(".product-item");
 
-const sportsButton = document.getElementById("sport");
-const sportsCat = document.getElementById("sport-cat");
+// const sportsButton = document.getElementById("sport");
+// const sportsCat = document.getElementById("sport-cat");
 
-sportsButton.addEventListener("click", function () {
-    if (sportsCat.style.display === "flex") {
-        sportsCat.style.display = "none";
-    } else {
-        sportsCat.style.display = "flex";
-    }
-});
+// sportsButton.addEventListener("click", function () {
+//     if (sportsCat.style.display === "flex") {
+//         sportsCat.style.display = "none";
+//     } else {
+//         sportsCat.style.display = "flex";
+//     }
+// });
 
 filterContainer.addEventListener("click", (event) => {
     if (event.target.classList.contains("filter-item")) {
@@ -32,22 +32,15 @@ filterContainer.addEventListener("click", (event) => {
             ) {
                 // Show the 'filter-all' element when filter is not 'all'
                 if (filterValue !== "all") {
-                    if (document.getElementById("sport") && filterValue === "sports") {
+                    if (document.getElementById("sport") && filterValue === "") {
                         document.getElementById("sport-cat").style.display = "flex";
                         document.getElementById("filter-all").style.display = "block";
                         document.getElementById("filter-all").style.fontSize = "1.2rem";
                     } else {
+                        document.getElementById("sport-cat").style.display = "none";
                         document.getElementById("filter-all").style.display = "block";
                         document.getElementById("filter-all").style.fontSize = "1.2rem";
                     }
-                    // }
-                    // if (document.getElementById("sport") && filterValue === "") {
-                    //     document.getElementById("sport-cat").style.display = "flex";
-                    //     document.getElementById("filter-all").style.display = "block";
-                    //     document.getElementById("filter-all").style.fontSize = "1.2rem";
-                    // } else if (filterValue !== "all" && ) {
-                    //     document.getElementById("filter-all").style.display = "block";
-                    //     document.getElementById("filter-all").style.fontSize = "1.2rem";
                 } else {
                     // Hide the 'filter-all' element when filter is 'all'
                     document.getElementById("filter-all").style.display = "none";
