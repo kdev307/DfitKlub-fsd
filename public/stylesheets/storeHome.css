@@ -185,9 +185,17 @@
 .pro-details {
     padding: 1rem;
     height: 12rem;
+    /* max-height: 100rem; */
+    /* overflow: hidden; */
+    /* height: auto; */
     /* background-color: #eceaea; */
     background-color: #dfdfdf;
 }
+
+/* .pro-details.show { */
+/* height: auto; */
+/* max-height: none; */
+/* } */
 
 .pro-details h3 {
     font-weight: 500;

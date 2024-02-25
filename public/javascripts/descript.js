@@ -30,17 +30,19 @@ showDescButtons.forEach((button) => {
     // iterating the functionality for every button present
     button.addEventListener("click", (event) => {
         // adding event listener on button click which is the event
-        const desc = event.target.closest(".pro-details").querySelector(".desc");
+        const proDetails = event.target.closest(".pro-details");
+        const desc = proDetails.querySelector(".desc");
         // for the triggered mouse-click event, in the DOM specified element is searched and then the required descendant is selected
         desc.classList.toggle("show"); // Toggle the 'show' class
-    });
-});
+        let divDetails = document.querySelectorAll(".pro-details");
+        proDetails.style.height = "auto";
+        // const card = event.target.closest(".product-card");
+        // const details = card.querySelector(".pro-details");
+        // const desc = card.querySelector(".desc");
 
-// function toggleDescription() {
-//     let prod_desc = document.getElementById("description");
-//     if (prod_desc.style.display === "none") {
-//         prod_desc.style.display = "block";
-//     } else {
-//         prod_desc.style.display = "none";
-//     }
-// }
+        // desc.classList.toggle("show");
+
+        // details.style.height = "auto";
+    });
+    // details.style.height = "12rem";
+});

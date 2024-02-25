@@ -73,7 +73,7 @@ ol {
 .profile-nav {
     list-style: none;
     font-size: 2.8rem;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     color: #d1cbcb;
 }
 
@@ -99,7 +99,20 @@ ol {
     justify-content: center;
     font-size: 2rem;
     font-family: "Rubik", sans-serif;
-    font-weight: 500;
+    /* font-weight: 500; */
+    font-weight: 400;
+}
+
+/* .main-nav-user-list > li:first-child {
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    padding: 1rem;
+} */
+
+sup {
+    position: relative;
+    top: -0.6rem;
+    font-size: 1.6rem;
 }
 
 .header {

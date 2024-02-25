@@ -28,7 +28,7 @@
 .profile-nav {
     list-style: none;
     font-size: 2.8rem;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .main-nav-link:link,
@@ -55,6 +55,13 @@
     font-family: "Rubik", sans-serif;
     font-weight: 500;
 }
+
+/* .main-nav-user-list > li {
+    font-size: 2.4rem;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    padding: 0.6rem 0.8rem;
+} */
 
 /*************************************/
 /* OVERLAY SIGN IN SECTION */
@@ -480,6 +487,12 @@
     padding: 1rem;
     border-radius: 50%;
     margin-bottom: 1rem;
+    transition: all 0.25s ease-in-out;
+}
+
+.feature-icon:hover {
+    transition: all 0.25s ease-in-out;
+    background-color: #fff;
 }
 
 .feature-title {

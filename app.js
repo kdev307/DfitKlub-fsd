@@ -1,14 +1,14 @@
 // Required Modules
 
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var fileUpload = require("express-fileupload");
-var { v4: uuidv4 } = require("uuid");
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const fileUpload = require("express-fileupload");
+const { v4: uuidv4 } = require("uuid");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
 
 var app = express();
 
@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Connecting to the Database
 const mysql = require("mysql2");
+const { log } = require("console");
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -39,6 +40,9 @@ conn.connect();
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
+// Main API of the Web Application
+
+// Rendering the Home Page/ Index Page
 app.get("/", function (req, res, next) {
     res.render("index");
 });
@@ -47,16 +51,13 @@ app.get("/index", function (req, res, next) {
     res.render("index");
 });
 
-app.get("/store", function (req, res, next) {
-    conn.query("SELECT * FROM products", function (error, results) {
-        if (error) throw error;
-        res.render("store", { products: results });
-    });
-});
+// Rendering the Sign Up Page
 
 app.get("/signUp", function (req, res, next) {
     res.render("signUp");
 });
+
+// Accessing & Storing the entered details by the user
 
 app.post("/signUp", function (req, res, next) {
     const name = req.body.name;
@@ -67,7 +68,7 @@ app.post("/signUp", function (req, res, next) {
     const password = req.body.password;
 
     conn.query(
-        "INSERT INTO users (user_id, user_name, user_email, , user_mobileNo,user_usrnm,user_password, user_address) VALUES (?,?,?,?,?,?,?)",
+        "INSERT INTO users (id, name, email,  mobileNo, username, password, address) VALUES (?,?,?,?,?,?,?)",
         [uuidv4(), name, email, mobile, userName, password, address],
         function (error, results, fields) {
             if (error) console.log(error);
@@ -76,33 +77,35 @@ app.post("/signUp", function (req, res, next) {
     );
 });
 
+// Rendering the Sign In Page
+
 app.get("/signIn", function (req, res, next) {
     res.render("signIn");
 });
 
+// Validation of the User at the time Log In and Redirecting to the Store Page for purchasing
+
 app.post("/signIn", function (req, res, next) {
     const userName = req.body.userName;
     const password = req.body.password;
-
+    console.log(userName);
     conn.query(
-        "SELECT user_usrnm, user_password FROM users WHERE user_usrnm = ?",
+        "SELECT username, password FROM users WHERE username = ?",
         [userName],
         function (error, results) {
             if (error) res.render("signIn");
             else {
-                if (results[0].user_password === password) {
+                if (results[0].password === password) {
                     conn.query(
-                        "SELECT user_id, user_name, user_usrnm FROM users WHERE user_usrnm = ?",
+                        "SELECT id, username FROM users WHERE username = ?",
                         [userName],
                         function (error, results) {
                             if (error) res.status(404);
                             else {
-                                const userid = results[0].user_id;
-                                const username = results[0].user_name;
-                                const usrnm = results[0].user_usrnm;
+                                const userid = results[0].id;
+                                const username = results[0].username;
                                 res.cookie("cookuid", userid);
-                                res.cookie("cookuname", username);
-                                res.cookie("cookusrnm", usrnm);
+                                res.cookie("cookusername", username);
                                 res.redirect("/store");
                             }
                         }
@@ -114,6 +117,35 @@ app.post("/signIn", function (req, res, next) {
         }
     );
 });
+
+// Rendering the Store Page after User Validation and storing credentials using cookies
+
+app.get("/store", function (req, res, next) {
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+    console.log(sid);
+    conn.query(
+        "SELECT id, username FROM users WHERE id = ?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                conn.query("SELECT * FROM products", function (error, results) {
+                    if (!error) {
+                        res.render("store", {
+                            userid: sid,
+                            username: susername,
+                            products: results,
+                        });
+                    }
+                });
+            } else {
+                res.render("signIn");
+            }
+        }
+    );
+});
+
+// Rendering the Admin Sign In Page
 
 app.get("/adminSignIn", function (req, res, next) {
     res.render("adminSignIn");
