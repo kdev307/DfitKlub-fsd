@@ -31,12 +31,10 @@
             <nav class="profile-nav">
                 <ul class="main-nav-user-list">
                     <li>
-                        <a href="/myCart" class="main-nav-link" target="_blank"
-                            ><ion-icon name="cart-outline"></ion-icon
-                        ><sup class="prod-count">0</sup></a>
+                        <a onclick="openMyCart()" class="main-nav-link"><ion-icon name="cart-outline"></ion-icon><sup class="prod_count" id="prod_count">0</sup></a>
                     </li>
                     <li>
-                        <div class="main-nav-link"><%= username %></div>
+                        <div class="main-nav-link"><b><%= username %></b></div>
                     </li>
                 </ul>
             </nav>
@@ -119,7 +117,7 @@
                             </div>
                             <div class="pro-others">
                                 <div class="pro-price">$ <%= products[i].prod_price %></div>
-                                <button class="btn btn--form">Add to Cart</button>
+                                <button class="btn btn--form" id="btn<%= products[i].prod_id %>" onclick="addToCart('<%= products[i].prod_id %>')"><ion-icon name="add-outline"></ion-icon></button>
                             </div>
                         </div>
                     </div>
@@ -203,4 +201,5 @@
 
     <script src="javascripts/storeFilter.js"></script>
     <script src="javascripts/descript.js"></script>
+    <script src="javascripts/cartFunctions.js"></script>
 </html>

@@ -159,8 +159,10 @@
     /* font-size: 13px; */
     font-weight: 600;
     background: #ababab5e;
+    background: #000;
     font-size: 1.6rem;
     color: #000;
+    color: #fff;
     padding: 0.2rem 1rem;
     border-radius: 3rem;
     margin-right: 1rem;
@@ -244,7 +246,6 @@
     align-items: center;
     border-bottom-left-radius: 2.4rem;
     border-bottom-right-radius: 2.4rem;
-    overflow: hidden;
 }
 
 .pro-others div {
@@ -275,12 +276,13 @@
 }
 
 .btn--form {
-    border-radius: 3rem;
-    font-size: 1.6rem;
-    padding: 1.2rem;
+    /* border-radius: 50%; */
+    font-size: 2.4rem;
+    padding: 0.8rem;
     color: #fff;
     background-color: #0080ff;
     align-self: end;
+    align-items: center;
 }
 
 .btn--form:hover {

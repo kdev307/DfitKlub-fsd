@@ -145,6 +145,45 @@ app.get("/store", function (req, res, next) {
     );
 });
 
+// Accessing MyCart
+
+let citems = [];
+let citemdetails = [];
+let item_in_cart = 0;
+function getItemDetails(citems, size) {
+    citems.map((item) => {
+        conn.query(
+            "SELECT * FROM products WHERE prod_id= ?",
+            [item],
+            function (error, results_item) {
+                citemdetails.push(results_item[0]);
+            }
+        );
+    });
+    item_in_cart = size;
+}
+
+// Rendering MyCart
+
+app.get("/myCart", function (req, res, next) {
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+    conn.query(
+        "SELECT id, username FROM users WHERE id= ? and username= ?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                res.render("myCart", {
+                    username: susername,
+                    userid: sid,
+                    items: citemdetails,
+                    item_count: item_in_cart,
+                });
+            } else res.render("signIn");
+        }
+    );
+});
+
 // Rendering the Admin Sign In Page
 
 app.get("/adminSignIn", function (req, res, next) {
