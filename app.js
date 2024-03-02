@@ -42,7 +42,7 @@ conn.connect();
 
 // Main API of the Web Application
 
-// Rendering the Home Page/ Index Page
+// Rendering the Home Page/ Index Page for the customer
 app.get("/", function (req, res, next) {
     res.render("index");
 });
@@ -51,7 +51,7 @@ app.get("/index", function (req, res, next) {
     res.render("index");
 });
 
-// Rendering the Sign Up Page
+// Rendering the Sign Up Page for the customer
 
 app.get("/signUp", function (req, res, next) {
     res.render("signUp");
@@ -77,7 +77,7 @@ app.post("/signUp", function (req, res, next) {
     );
 });
 
-// Rendering the Sign In Page
+// Rendering the Sign In Page for the customer
 
 app.get("/signIn", function (req, res, next) {
     res.render("signIn");
@@ -145,7 +145,7 @@ app.get("/store", function (req, res, next) {
     );
 });
 
-// Accessing MyCart
+// Accessing MyCart of the customer
 
 let citems = [];
 let citemdetails = [];
@@ -163,7 +163,7 @@ function getItemDetails(citems, size) {
     item_in_cart = size;
 }
 
-// Rendering MyCart
+// Rendering MyCart of the customer
 
 app.get("/myCart", function (req, res, next) {
     const sid = req.cookies.cookuid;
@@ -182,6 +182,13 @@ app.get("/myCart", function (req, res, next) {
             } else res.render("signIn");
         }
     );
+});
+
+// Logging out the customer
+
+app.get("/logOut", function (req, res, next) {
+    res.clearCookie();
+    return res.redirect("/signIn");
 });
 
 // Rendering the Admin Sign In Page

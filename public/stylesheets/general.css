@@ -17,6 +17,11 @@ html {
     /* scroll-behavior: smooth; */
 }
 
+a {
+    all: unset;
+    padding: auto;
+}
+
 .sub-heading {
     font-size: 3.2rem;
     padding-left: 100rem;

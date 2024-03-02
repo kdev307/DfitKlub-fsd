@@ -34,7 +34,27 @@
                         <a onclick="openMyCart()" class="main-nav-link"><ion-icon name="cart-outline"></ion-icon><sup class="prod_count" id="prod_count">0</sup></a>
                     </li>
                     <li>
-                        <div class="main-nav-link"><b><%= username %></b></div>
+                        <div style="color: #fff;"><b><%= username %></b>
+                        <span class="profile-btn">
+                            <button class="profile-btn"><ion-icon
+                                name="caret-down-outline"
+                                class="toggle-focus" id="profile-btn"
+                                ></ion-icon></button>
+                            <ul class="profile-div " id="profile-div">
+                                <li><ion-icon name="person-outline"></ion-icon>
+                                    <a href="/myProfile">My Profile</a>
+                                </li>
+                                <li><ion-icon name="bag-check-outline"></ion-icon>
+                                    <a href="/myOrders">My Orders</a>
+                                </li>
+                                <li><ion-icon name="pencil-outline"></ion-icon>
+                                    <a href="/editProfile">Edit Profile</a>
+                                </li>
+                                <li><ion-icon name="log-out-outline"></ion-icon>
+                                    <a href="/logOut">Logout</a>
+                                </li>
+                            </ul>
+                        </span></div>
                     </li>
                 </ul>
             </nav>

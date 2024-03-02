@@ -48,7 +48,6 @@
 }
 
 .dropdown-btn {
-    display: flex;
     display: none;
     position: absolute;
     border: none;
@@ -74,7 +73,7 @@
 }
 
 .filter-btn > li:nth-child(8):hover .dropdown-btn button {
-    background-color: #00d5ff;
+    /* background-color: #00d5ff; */
     position: relative;
 }
 
