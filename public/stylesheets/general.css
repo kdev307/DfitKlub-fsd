@@ -17,9 +17,11 @@ html {
     /* scroll-behavior: smooth; */
 }
 
-a {
+a,
+button {
     all: unset;
     padding: auto;
+    cursor: pointer;
 }
 
 .sub-heading {

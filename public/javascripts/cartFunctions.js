@@ -13,9 +13,8 @@ function addToCart(item_id) {
 }
 
 function openMyCart() {
-    let url = "/myCart";
+    let url = "http://localhost:3000/myCart";
     fetch(url, {
-        target: "_blank",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24,5 +23,5 @@ function openMyCart() {
         }),
     });
     // window.location.href = "/myCart";
-    window.open("/myCart", "_blank");
+    window.open("http://localhost:3000/myCart", "_blank");
 }

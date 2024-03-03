@@ -14,8 +14,7 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" type="text/css" href="stylesheets/general.css" />
-        <!-- <link rel="stylesheet" type="text/css" href="stylesheets/home.css" /> -->
-        <link rel="stylesheet" type="text/css" href="stylesheets/modal-view.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
 
@@ -37,7 +36,7 @@
                         <div style="color: #fff;"><b><%= username %></b>
                         <span class="profile-btn">
                             <button class="profile-btn"><ion-icon
-                                name="caret-down-outline"
+                                name="ellipsis-vertical"
                                 class="toggle-focus" id="profile-btn"
                                 ></ion-icon></button>
                             <ul class="profile-div " id="profile-div">
@@ -136,7 +135,7 @@
                                 <p id="description" class="desc "><%= products[i].prod_description %></p>
                             </div>
                             <div class="pro-others">
-                                <div class="pro-price">$ <%= products[i].prod_price %></div>
+                                <div class="pro-price">₹ <%= products[i].prod_price %></div>
                                 <button class="btn btn--form" id="btn<%= products[i].prod_id %>" onclick="addToCart('<%= products[i].prod_id %>')"><ion-icon name="add-outline"></ion-icon></button>
                             </div>
                         </div>
@@ -154,14 +153,15 @@
                             <figure class="location">
                                 <ion-icon class="contacts-icon" name="location-outline"></ion-icon>
                                 <figcaption>
-                                    <p>Sovereign Tower, CA 94107</p>
+                                    <p>39, Sector 4, HSR Layout, Bengaluru, Karnataka 560102</p>
                                 </figcaption>
                             </figure>
                         </div>
                         <figure class="mobile">
                             <ion-icon class="contacts-icon" name="call-outline"></ion-icon>
                             <figcaption>
-                                <a class="footer-link" href="tel:415-201-6370">415-201-6370</a>
+                                <a class="footer-link" href="tel:415-201-6370">044-78945234</a><br>
+                                <a class="footer-link" href="tel:415-201-6370">044-78945235</a>
                             </figcaption>
                         </figure>
                         <figure class="mail">
@@ -169,6 +169,9 @@
                             <figcaption>
                                 <a class="footer-link" href="malito:help@fitklub.com"
                                     >help@fitklub.com</a
+                                >
+                                <a class="footer-link" href="malito:hello@fitklub.com"
+                                    >hello@fitklub.com</a
                                 >
                             </figcaption>
                         </figure>
@@ -220,6 +223,7 @@
     ></script>
 
     <script src="javascripts/storeFilter.js"></script>
+    <script src="javascripts/profMenu.js"></script>
     <script src="javascripts/descript.js"></script>
     <script src="javascripts/cartFunctions.js"></script>
 </html>

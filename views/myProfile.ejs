@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/images/logo (2).png" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/images/logo (2).png" />
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Edu+NSW+ACT+Foundation:wght@500;700;800;900&family=Poppins:wght@400;600;700&family=Rubik:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" type="text/css" href="stylesheets/general.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
+
+        <title>My Profie</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <a href="/index">
+                <img src="/images/logo (1).png" alt="D'fitKlub Logo" class="logo" id="home" />
+            </a>
+            <nav class="profile-nav">
+                <ul class="main-nav-user-list">
+                    <li>
+                        <a onclick="openMyCart()" class="main-nav-link"
+                            ><ion-icon name="cart-outline"></ion-icon
+                            ><sup class="prod_count" id="prod_count">0</sup></a
+                        >
+                    </li>
+                    <li>
+                        <div style="color: #fff">
+                            <b><%= username %></b>
+                            <span class="profile-btn">
+                                <button class="profile-btn">
+                                    <ion-icon
+                                        name="ellipsis-vertical"
+                                        class="toggle-focus"
+                                        id="profile-btn"
+                                    ></ion-icon>
+                                </button>
+                                <ul class="profile-div" id="profile-div">
+                                    <li>
+                                        <ion-icon name="person-outline"></ion-icon>
+                                        <a href="/myProfile">My Profile</a>
+                                    </li>
+                                    <li>
+                                        <ion-icon name="bag-check-outline"></ion-icon>
+                                        <a href="/myOrders">My Orders</a>
+                                    </li>
+                                    <li>
+                                        <ion-icon name="pencil-outline"></ion-icon>
+                                        <a href="/editProfile">Edit Profile</a>
+                                    </li>
+                                    <li>
+                                        <ion-icon name="log-out-outline"></ion-icon>
+                                        <a href="/logOut">Logout</a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main></main>
+        <footer class="footer" id="footer">
+            <div class="grid--footer">
+                <div class="address-col">
+                    <address class="contacts grid--3--cols">
+                        <div>
+                            <figure class="location">
+                                <ion-icon class="contacts-icon" name="location-outline"></ion-icon>
+                                <figcaption>
+                                    <p>39, Sector 4, HSR Layout, Bengaluru, Karnataka 560102</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <figure class="mobile">
+                            <ion-icon class="contacts-icon" name="call-outline"></ion-icon>
+                            <figcaption>
+                                <a class="footer-link" href="tel:415-201-6370">044-78945234</a
+                                ><br />
+                                <a class="footer-link" href="tel:415-201-6370">044-78945235</a>
+                            </figcaption>
+                        </figure>
+                        <figure class="mail">
+                            <ion-icon class="contacts-icon" name="mail-outline"></ion-icon>
+                            <figcaption>
+                                <a class="footer-link" href="malito:help@fitklub.com"
+                                    >help@fitklub.com</a
+                                >
+                                <a class="footer-link" href="malito:hello@fitklub.com"
+                                    >hello@fitklub.com</a
+                                >
+                            </figcaption>
+                        </figure>
+                    </address>
+                </div>
+                <div class="follow grid--5--cols">
+                    <a href="#">
+                        <ion-icon class="follow-icon" name="logo-facebook"></ion-icon>
+                    </a>
+                    <a href="#">
+                        <ion-icon class="follow-icon" name="logo-instagram"></ion-icon>
+                    </a>
+                    <a href="#">
+                        <ion-icon class="follow-icon" name="logo-linkedin"></ion-icon>
+                    </a>
+                    <a href="#">
+                        <ion-icon class="follow-icon" name="logo-twitter"></ion-icon>
+                    </a>
+                    <a href="#">
+                        <ion-icon class="follow-icon" name="logo-youtube"></ion-icon>
+                    </a>
+                </div>
+                <a class="" href="/">
+                    <img src="/images/logo (1).png" alt="D'fitKlub Logo" class="footer-logo logo" />
+                </a>
+                <div class="copy">
+                    <p class="follow-us-text">follow us</p>
+                    <br />
+                    <br />
+                    <p class="copyright">
+                        Copyright © <span class="year">2023</span> by D-fitKlub.Inc. All rights are
+                        reserved.
+                    </p>
+                </div>
+            </div>
+            <div class="credit">Created with <span>&hearts;</span> by &dash; KD</div>
+        </footer>
+    </body>
+
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script
+        type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+
+    <script
+        defer
+        src="// https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
+    ></script>
+
+    <script src="javascripts/storeFilter.js"></script>
+    <script src="javascripts/profMenu.js"></script>
+    <script src="javascripts/cartFunctions.js"></script>
+</html>

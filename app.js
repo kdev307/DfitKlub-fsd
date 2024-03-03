@@ -147,16 +147,16 @@ app.get("/store", function (req, res, next) {
 
 // Accessing MyCart of the customer
 
-let citems = [];
-let citemdetails = [];
+let cart_items_id = [];
+let cart_item_details = [];
 let item_in_cart = 0;
-function getItemDetails(citems, size) {
-    citems.map((item) => {
+function getItemDetails(cart_items_id, size) {
+    cart_items_id.map((item) => {
         conn.query(
             "SELECT * FROM products WHERE prod_id= ?",
             [item],
             function (error, results_item) {
-                citemdetails.push(results_item[0]);
+                cart_item_details.push(results_item[0]);
             }
         );
     });
@@ -176,12 +176,22 @@ app.get("/myCart", function (req, res, next) {
                 res.render("myCart", {
                     username: susername,
                     userid: sid,
-                    items: citemdetails,
+                    items: cart_item_details,
                     item_count: item_in_cart,
                 });
             } else res.render("signIn");
         }
     );
+});
+
+let cart_items = [];
+app.post("/myCart", function (req, res, next) {
+    cart_items = req.body.cart;
+    let unique = [];
+    cart_items.forEach((index) => {
+        if (!unique.includes(index)) unique.push(index);
+    });
+    getItemDetails(unique, unique.length);
 });
 
 // Logging out the customer
