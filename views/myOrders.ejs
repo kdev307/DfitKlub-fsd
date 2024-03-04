@@ -69,7 +69,47 @@
                 </ul>
             </nav>
         </header>
-        <main></main>
+        <main>
+            <main>
+            <section id="cart">
+
+                    <h2 class="lines"></h2>
+                    <h1 class="sub-heading">My Order History</h1>
+                    <h2 class="lines"></h2>
+                    <% let count = 0; %> 
+
+                    <table id="mycart" style="color: #f0f8ff;">
+                        <thead>
+                            <tr>
+                        <th style="width: 5%">S.No.:</th>
+                        <th style="width: 10%">Product</th>
+                        <th style="width: 15%">Product Name</th>
+                        <th style="width: 10%">Price</th>
+                        <th style="width: 5%">Quantity</th>
+                        <th style="width: 15%">Total Price</th>
+                        <th style="width: 20%">Order ID</th>
+                        <th style="width: 20%">Date/Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i=0;i<order_history.length;i++) { %>
+                            <tr>
+                                <% count++ %>
+                                <td><%= i+1 %></td>
+                                <td><img src="/images/shop/<%=order_history[i].prod_img %>" alt="" style="height: 25rem; width: 15rem; border-radius: 10%; border: 2px solid #ffffffb3; box-shadow: px 4px 8px #fff;"></td>
+                                <td><%= order_history[i].prod_name %></td>
+                                <td>₹<span class="item-price"><%= order_history[i].prod_price %></span></td>
+                                <td><%= order_history[i].quantity %></td>
+                                <td>₹<span class="price"><%= order_history[i].prod_price * order_history[i].quantity %></span></td>
+                                <td><%= order_history[i].order_id %></td>
+                                <td><%= order_history[i].datetime %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">
                 <div class="address-col">

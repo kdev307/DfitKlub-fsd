@@ -17,8 +17,36 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
+        <style>
+            h2{
 
-        <title>My Profile</title>
+                color: #f0f8ff;
+            }
+            .desc{
+                color: #f0f8ff;
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 500;
+            }
+            .check-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                background-color: #4CAF50; /* Green color for checkmark */
+                margin: 0 auto 2rem;
+                font-size: 4.8rem;
+                color: #fff; /* Light text color */
+                border: 3px solid #4CAF50; /* Green border */
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Light shadow */
+            }
+            .other-btns{
+                margin: 4% 42.5%;
+            }
+        </style>
+        <title>Order Confirmed</title>
     </head>
 
     <body>
@@ -69,7 +97,31 @@
                 </ul>
             </nav>
         </header>
-        <main></main>
+        <main>
+            <section class="confirmed">
+                <h2 class="lines"></h2>
+                <h1 class="sub-heading">Order Confirmed !</h1>
+                <h2 class="lines"></h2>
+
+                <h2 class="sub-heading">Congratulations....!!!!</h2>
+                <div class="check-icon">&#10003;</div>
+                <div class="desc">
+                    <p>Your order has been successfully placed.</p>
+                    <p>Thank you for shopping with us !</p>
+                    <p><b>Order Details</b></p>
+                    <!-- The code is not working when using EJS but the data is being inserted into the database -->
+                    <% for(let i=0;i<order_details.length;i++) { %>
+                        <p><b>Order ID: </b></p>
+                        <span><%= order_details[i].order_id %></span><br>
+                    <% } %>
+                    <% for(let i=0;i<order_details.length;i++) { %>
+                        <p><b>Expected Delivery: </b></p>
+                        <span><%= order_details[i].datetime %></span><br>
+                    <% } %>
+                    
+                </div>
+            </section>
+        </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">
                 <div class="address-col">

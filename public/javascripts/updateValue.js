@@ -8,7 +8,7 @@ function updateData(qty, i) {
 
     // updating the total quantity of the product
 
-    const quantity = document.querySelector(".quantity");
+    const quantity = document.querySelectorAll(".quantity");
     let total_qty = parseInt(0);
     for (let j = 0; j < quantity.length; j++) {
         total_qty += parseInt(quantity[j].value);

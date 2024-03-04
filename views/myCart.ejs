@@ -71,16 +71,18 @@
         </header>
         <main>
             <section id="cart">
-                <h2 class="lines"></h2>
-                <h1 class="sub-heading">My Cart</h1>
-                <h2 class="lines"></h2>
-                <% let count = 0; %> 
-                <% let total_price = 0; %> 
+                <form action="/checkout" method="post">
+
+                    <h2 class="lines"></h2>
+                    <h1 class="sub-heading">My Cart</h1>
+                    <h2 class="lines"></h2>
+                    <% let count = 0; %> 
+                    <% let total_price = 0; %> 
                 <% let total_items = 0; %>
 
                     <table id="mycart" style="color: #f0f8ff;">
                         <thead>
-                    <tr>
+                            <tr>
                         <th style="width: 5%">S.No.:</th>
                         <th style="width: 10%">Product</th>
                         <th style="width: 10%">Product Name</th>
@@ -96,30 +98,30 @@
                                 <% count++ %>
                                 <td><%= i+1 %></td>
                                 <td><img src="/images/shop/<%=items[i].prod_img %>" alt="" style="height: 25rem; width: 15rem; border-radius: 10%; border: 2px solid #ffffffb3; box-shadow: px 4px 8px #fff;"></td>
-                                <td><%= items[i].prod_name %>
-                                    <td><%= items[i].prod_description %></td>
-                                </td>
+                                <td><%= items[i].prod_name %></td>
+                                <td><%= items[i].prod_description %></td>
                                 <td>₹<span class="item-price"><%= items[i].prod_price %></span></td>
-                                <td><input type="number" style="padding: 0.5rem; background-color: transparent; color: #fff; width: 5rem; font-size: 2rem; box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; text-align: center;" name="quantity" id="quantity" class="quantity" style="width: 3rem;" placeholder="Qty" value="1" min="0" onchange="updateData(this.value,'<%= i %>')"></td>
+                                <td><input type="number" style="padding: 0.5rem; background-color: transparent; color: #fff; width: 5rem; font-size: 2rem; box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; text-align: center;" name="quantity" id="quantity" class="quantity" style="width: 3rem;" value="1" min="0" onchange="updateData(this.value, '<%= i %>' )"></td>
                                 <td>₹<span class="price"><%= items[i].prod_price %></span></td>
                                 <input type="hidden" name="itemid" value="<%= items[i].prod_id %>">
                                 <input type="hidden" name="subprice" value="<%= items[i].prod_price %>">
-                                <% total_price+=items[i].prod_price %>
+                                <% total_price += items[i].prod_price %>
                             </tr>
                         <% } %>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="5"><b>Total</b></td>
-                            <td><%= count %></td>
-                            <span id="initial_quantity" hidden><%= count %></span>
+                            <td id="total_quantity"><%= count %></td>
+                            <span id="initial_quantity" ><%= count %></span>
                             <td id="total_price">₹ <%= total_price %></td>
-                            <span id="initial_price" hidden><%= total_price %></span>
+                            <span id="initial_price" ><%= total_price %></span>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-                <button class="other-btns"  type="submit">Buy Now</button>
+            <button class="other-btns"  type="submit">Buy Now</button>
+        </form>
             </section>
         </main>
         <footer class="footer" id="footer">
@@ -145,13 +147,13 @@
                             <ion-icon class="contacts-icon" name="mail-outline"></ion-icon>
                             <figcaption>
                                 <a class="footer-link" href="malito:help@fitklub.com"
-                                    >help@fitklub.com</a
+                                >help@fitklub.com</a
                                 >
                                 <a class="footer-link" href="malito:hello@fitklub.com"
                                     >hello@fitklub.com</a
-                                >
-                            </figcaption>
-                        </figure>
+                                    >
+                                </figcaption>
+                            </figure>
                     </address>
                 </div>
                 <div class="follow grid--5--cols">

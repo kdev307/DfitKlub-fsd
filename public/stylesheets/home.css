@@ -103,10 +103,10 @@
     font-family: "Edu NSW ACT Foundation", sans-serif;
     font-weight: 700;
     font-size: 3.6rem;
-    color: #d3d1d1;
-    background-color: #c30000;
+    color: #fff;
+    background-color: #b30000;
     padding: 1rem 2rem;
-    border-radius: 1.5rem;
+    border-radius: 4rem;
     top: 30rem;
     bottom: auto;
     right: auto;
@@ -115,12 +115,14 @@
     /* margin-left: 100rem; */
     text-decoration: none;
     text-align: center;
+    transition: all 0.5s ease-in-out;
 }
 
 .hero-button:hover,
 .hero-button:active {
     background-color: #ff0000;
-    color: #fff;
+    color: #000000;
+    box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4;
 }
 
 .btn2:link,
@@ -128,8 +130,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #bfb200;
-    color: #000;
+    background-color: #bdb000;
 }
 
 .btn2:hover,
@@ -139,7 +140,8 @@
 
 .btn3:link,
 .btn3:visited {
-    background-color: #009fcb;
+    background-color: #0093bc;
+    transition: all 0.5s ease-in-out;
 }
 
 .btn3:hover,
@@ -330,7 +332,7 @@
 
 .program {
     /* background-color: #ff0000; */
-    background: linear-gradient(135deg, #ff0000, #ff4400, #00ff00, #02af05);
+    background: linear-gradient(135deg, #ff8800, #ffffff);
     -webkit-text-fill-color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
@@ -347,7 +349,7 @@
 }
 
 .program:hover {
-    background: linear-gradient(45deg, #00ff00, #02af05, #ff0000, #ff4400);
+    background: linear-gradient(45deg, #ffffff, #ff8800);
     -webkit-text-fill-color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
@@ -523,7 +525,7 @@
     padding-left: 10rem;
     font-size: 2.8rem;
     color: #949393ad;
-    padding-bottom: 0;
+    padding-bottom: 2rem;
     text-transform: none;
 }
 
@@ -535,8 +537,8 @@
 }
 
 .testimonials {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
     row-gap: 3.6rem;
     column-gap: 4rem;
 }
@@ -557,16 +559,18 @@
     height: 6.4rem;
     border-radius: 50%;
     margin-bottom: 0.8rem;
+    margin-left: 45rem;
 }
 
 .testimonial-name {
     font-size: 1.6rem;
     color: #bebebe;
     padding-left: 12rem;
+    margin-left: 40rem;
 }
 
 .gallery-img-1 {
-    grid-area: leftTop;
+    grid-area: img1;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -574,7 +578,7 @@
 }
 
 .gallery-img-2 {
-    grid-area: leftMid;
+    grid-area: img2;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -582,7 +586,7 @@
 }
 
 .gallery-img-3 {
-    grid-area: leftBottom;
+    grid-area: img3;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -590,7 +594,7 @@
 }
 
 .gallery-img-4 {
-    grid-area: topLeft;
+    grid-area: img4;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -598,7 +602,7 @@
 }
 
 .gallery-img-5 {
-    grid-area: topRight;
+    grid-area: img5;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -606,7 +610,7 @@
 }
 
 .gallery-img-6 {
-    grid-area: bottomLeft;
+    grid-area: img6;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -614,7 +618,7 @@
 }
 
 .gallery-img-7 {
-    grid-area: bottomRight;
+    grid-area: img7;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -622,7 +626,7 @@
 }
 
 .gallery-img-8 {
-    grid-area: rightTop;
+    grid-area: img8;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -630,7 +634,7 @@
 }
 
 .gallery-img-9 {
-    grid-area: rightMid;
+    grid-area: img9;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -638,7 +642,23 @@
 }
 
 .gallery-img-10 {
-    grid-area: rightBottom;
+    grid-area: img10;
+    /* grid-column-start: ;
+  grid-column-end: ;
+  grid-row-start: ;
+  grid-row-end: ; */
+}
+
+.gallery-img-11 {
+    grid-area: img11;
+    /* grid-column-start: ;
+  grid-column-end: ;
+  grid-row-start: ;
+  grid-row-end: ; */
+}
+
+.gallery-img-12 {
+    grid-area: img12;
     /* grid-column-start: ;
   grid-column-end: ;
   grid-row-start: ;
@@ -651,20 +671,26 @@
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(12, 1fr);
     grid-template-areas:
-        "leftTop leftTop topLeft topLeft topLeft topRight topRight rightTop rightTop"
-        "leftTop leftTop topLeft topLeft topLeft topRight topRight rightTop rightTop"
-        "leftMid leftMid topLeft topLeft topLeft topRight topRight rightMid rightMid"
-        "leftMid leftMid bottomLeft bottomLeft bottomRight bottomRight bottomRight rightMid rightMid"
-        "leftBottom leftBottom bottomLeft bottomLeft bottomRight bottomRight bottomRight rightBottom rightBottom"
-        "leftBottom leftBottom bottomLeft bottomLeft bottomRight bottomRight bottomRight rightBottom rightBottom";
+        "img1 img1  img2 img2 img3  img3"
+        "img1 img1  img2 img2 img3 img3 "
+        "img4 img4 img4 img4 img11 img11"
+        "img4 img4 img4 img4 img11 img11"
+        "img4 img4 img4 img4  img5 img5"
+        "img4 img4 img4 img4  img5 img5"
+        "img12 img12 img7 img7 img7 img7"
+        "img12 img12 img7 img7 img7 img7"
+        "img6 img6 img7 img7 img7 img7"
+        "img6 img6 img7 img7 img7 img7"
+        "img8 img8  img9 img9 img10  img10"
+        "img8 img8  img9 img9  img10 img10";
     background-color: #1a1818;
     padding: 1rem;
     column-gap: 1rem;
     box-shadow: 0rem 0rem 4.2rem rgba(191, 187, 187, 0.75);
-    /* height: 60rem; */
+    /* height: 110rem; */
     border-radius: 1rem;
     align-items: center;
     justify-content: center;
@@ -687,7 +713,7 @@
 }
 
 .gallery-img {
-    /* height: 18rem; */
+    /* height: auto; */
     width: 100%;
 }
 
@@ -708,7 +734,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     box-shadow: 0 2.4rem 4.8rem rgba(255, 255, 255, 0.15);
-    border-radius: 1rem;
+    border-radius: 4rem;
     background-image: linear-gradient(to right bottom, #13131365, #161616);
     overflow: hidden;
 }
@@ -760,7 +786,7 @@
     color: inherit;
     border: none;
     background-color: #000000;
-    border-radius: 9px;
+    border-radius: 4rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
