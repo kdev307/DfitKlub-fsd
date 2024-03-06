@@ -2,7 +2,6 @@
 /* GENERAL*/
 /*************************************/
 
-
 html {
     font-size: 62.5%;
     overflow-x: hidden;
@@ -47,11 +46,13 @@ sup {
     font-size: 1.6rem;
 }
 
-table{
+table {
     margin: 0 6.4rem;
 }
 
-table,th,td{
+table,
+th,
+td {
     font-size: 1.8rem;
     border: 2px solid #fff;
     padding: 0.8rem 1rem;
@@ -130,8 +131,6 @@ table,th,td{
     padding: 1rem;
 } */
 
-
-
 .profile-btn {
     background-color: transparent;
     padding: 0.4rem;
@@ -142,6 +141,7 @@ table,th,td{
     font-family: inherit;
     font-size: 2rem;
     font-weight: 600;
+    box-shadow: none;
 }
 
 .profile-div {
@@ -192,7 +192,7 @@ table,th,td{
     margin-bottom: 3.2rem;
 }
 
-.other-btns{
+.other-btns {
     width: 15rem;
     background-color: #45c202;
     color: #fff;
@@ -204,14 +204,13 @@ table,th,td{
     text-align: center;
     font-size: 2rem;
     transition: all 0.5s ease-in-out;
-    box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; 
+    box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4;
 }
 
-.other-btns:hover{
+.other-btns:hover {
     background-color: #4dff00;
     transition: all 0.5s ease-in-out;
     color: #000;
-
 }
 
 /*************************************/

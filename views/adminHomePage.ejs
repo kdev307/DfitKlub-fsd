@@ -15,10 +15,16 @@
         />
         <link rel="stylesheet" type="text/css" href="stylesheets/general.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
-        <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" /> -->
         <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
-
-        <title>My Cart</title>
+        <link rel="stylesheet" type="text/css" href="stylesheets/forms.css" />
+        <style>
+            main {
+                padding: 5rem;
+                margin-left: -10%;
+            }
+        </style>
+        <title>Home Page - ADMIN</title>
     </head>
 
     <body>
@@ -28,12 +34,6 @@
             </a>
             <nav class="profile-nav">
                 <ul class="main-nav-user-list">
-                    <li>
-                        <a onclick="openMyCart()" class="main-nav-link"
-                            ><ion-icon name="cart-outline"></ion-icon
-                            ><sup class="prod_count" id="prod_count"><%= item_count %></sup></a
-                        >
-                    </li>
                     <li>
                         <div style="color: #fff">
                             <b><%= username %></b>
@@ -51,14 +51,6 @@
                                         <a href="/myProfile">My Profile</a>
                                     </li>
                                     <li>
-                                        <ion-icon name="bag-check-outline"></ion-icon>
-                                        <a href="/myOrders">My Orders</a>
-                                    </li>
-                                    <li>
-                                        <ion-icon name="pencil-outline"></ion-icon>
-                                        <a href="/editProfile">Edit Profile</a>
-                                    </li>
-                                    <li>
                                         <ion-icon name="log-out-outline"></ion-icon>
                                         <a href="/logOut">Logout</a>
                                     </li>
@@ -70,59 +62,17 @@
             </nav>
         </header>
         <main>
-            <section id="cart">
-                <form action="/checkout" method="post">
-
-                    <h2 class="lines"></h2>
-                    <h1 class="sub-heading">My Cart</h1>
-                    <h2 class="lines"></h2>
-                    <% let count = 0; %> 
-                    <% let total_price = 0; %> 
-                <% let total_items = 0; %>
-
-                    <table id="mycart" style="color: #f0f8ff;">
-                        <thead>
-                            <tr>
-                        <th style="width: 5%">S.No.:</th>
-                        <th style="width: 15%">Product</th>
-                        <th style="width: 20%">Product Name</th>
-                        <th style="width: 30%">Product Description</th>
-                        <th style="width: 10%">Price</th>
-                        <th style="width: 5%">Quantity</th>
-                        <th style="width: 15%">SubTotal</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <% for (let i=0;i<items.length;i++) { %>
-                            <tr>
-                                <% count++ %>
-                                <td><%= i+1 %></td>
-                                <td><img src="/images/shop/<%=items[i].prod_img %>" alt="" style="height: 30rem; width: 20rem; border-radius: 10%; border: 2px solid #ffffffb3; box-shadow: px 4px 8px #fff;"></td>
-                                <td><%= items[i].prod_name %></td>
-                                <td><%= items[i].prod_description %></td>
-                                <td>₹<span class="item-price"><%= items[i].prod_price %></span></td>
-                                <td><input type="number" style="padding: 0.5rem; background-color: transparent; color: #fff; width: 5rem; font-size: 2rem; box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; text-align: center;" name="quantity" id="quantity" class="quantity" style="width: 3rem;" value="1" min="0" onchange="updateData(this.value, '<%= i %>' )"></td>
-                                <td>₹<span class="price"><%= items[i].prod_price %></span></td>
-                                <input type="hidden" name="itemid" value="<%= items[i].prod_id %>">
-                                <input type="hidden" name="subprice" value="<%= items[i].prod_price %>">
-                                <% total_price += items[i].prod_price %>
-                            </tr>
-                        <% } %>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5"><b>Total</b></td>
-                            <td id="total_quantity"><%= count %></td>
-                            <span id="initial_quantity" ><%= count %></span>
-                            <td id="total_price">₹ <%= total_price %></td>
-                            <span id="initial_price" ><%= total_price %></span>
-                        </tr>
-                    </tfoot>
-                </table>
+            <h2 class="lines"></h2>
+            <h1 class="sub-heading">Welcome Admin</h1>
+            <h2 class="lines"></h2>
+            <div class="grid--3--cols">
+                <button class="form-btn"><a href="/adminAddProducts">Add New Products</a></button
+                ><button class="form-btn">
+                    <a href="/adminChangePrice"> Change Products Price</a></button
+                ><button class="form-btn">
+                    <a href="/adminView_Dispatch">View & Dispatch Orders</a>
+                </button>
             </div>
-            <button class="other-btns"  type="submit">Buy Now</button>
-        </form>
-            </section>
         </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">
@@ -139,7 +89,8 @@
                         <figure class="mobile">
                             <ion-icon class="contacts-icon" name="call-outline"></ion-icon>
                             <figcaption>
-                                <a class="footer-link" href="tel:415-201-6370">044-78945234</a><br>
+                                <a class="footer-link" href="tel:415-201-6370">044-78945234</a
+                                ><br />
                                 <a class="footer-link" href="tel:415-201-6370">044-78945235</a>
                             </figcaption>
                         </figure>
@@ -147,13 +98,13 @@
                             <ion-icon class="contacts-icon" name="mail-outline"></ion-icon>
                             <figcaption>
                                 <a class="footer-link" href="malito:help@fitklub.com"
-                                >help@fitklub.com</a
+                                    >help@fitklub.com</a
                                 >
                                 <a class="footer-link" href="malito:hello@fitklub.com"
                                     >hello@fitklub.com</a
-                                    >
-                                </figcaption>
-                            </figure>
+                                >
+                            </figcaption>
+                        </figure>
                     </address>
                 </div>
                 <div class="follow grid--5--cols">
@@ -202,6 +153,4 @@
     ></script>
 
     <script src="javascripts/profMenu.js"></script>
-    <script src="javascripts/cartFunctions.js"></script>
-    <script src="javascripts/updateValue.js"></script>
 </html>

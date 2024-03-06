@@ -211,7 +211,7 @@ app.post("/checkout", function (req, res, next) {
                         const total_sub_price = req.body.subprice;
                         const userid = req.cookies.cookuid;
                         let currDate = new Date();
-                        if (item_id.length == 1 ) {
+                        if (item_id.length == 1) {
                             if (qty[0] != 0) {
                                 conn.query(
                                     "INSERT INTO orders (order_id, user_id, prod_id, quantity, price, datetime) VALUES (?, ?, ?, ?, ?, ?)",
@@ -267,7 +267,7 @@ app.post("/checkout", function (req, res, next) {
                         cart_item_details = [];
                         item_in_cart = 0;
                         getItemDetails(cart_items_id, 0);
-                        res.render("confirmed", { username: susername, userid: sid});
+                        res.render("confirmed", { username: susername, userid: sid });
                     }
                 });
             } else {
@@ -306,41 +306,6 @@ app.post("/checkout", function (req, res, next) {
 //     );
 // });
 
-// app.get("/confirmed", function (req, res, next) {
-//     const sid = req.cookies.cookuid;
-//     const susername = req.cookies.cookusername;
-//     conn.query(
-//         "SELECT id, username FROM users WHERE id= ? and username= ?",
-//         [sid, susername],
-//         function (error, userResults) {
-//             if (!error && userResults && userResults.length > 0) {
-//                 conn.query(
-//                     "SELECT order_id, datetime FROM orders WHERE user_id= ?",
-//                     [sid],
-//                     function (error, orderResults) {
-//                         if (!error && orderResults && orderResults.length > 0) {
-//                             res.render("confirmed", {
-//                                 username: susername,
-//                                 userid: sid,
-//                                 order_details: orderResults,
-//                             });
-//                         } else {
-//                             res.render("confirmed",{
-//                                 username: susername,
-//                                 userid: sid,
-//                                 order_details: [],
-
-//                             });
-//                         }
-//                     }
-//                 );
-//             } else {
-//                 res.render("signIn");
-//             }
-//         }
-//     );
-// });
-
 app.get("/confirmed", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
@@ -350,15 +315,24 @@ app.get("/confirmed", function (req, res, next) {
         function (error, userResults) {
             if (!error && userResults && userResults.length > 0) {
                 conn.query(
-                    "SELECT order_id, datetime FROM orders WHERE user_id= ?",
+                    "SELECT od.order_id, od.datetime FROM order_dispatch od, products prod WHERE od.user_id = ? AND prod.prod_id = od.prod_id ",
                     [sid],
                     function (error, orderResults) {
-                        const order_details = orderResults || [];
-                        res.render("confirmed", {
-                            username: susername,
-                            userid: sid,
-                            order_details: order_details,
-                        });
+                        if (!error && orderResults && orderResults.length > 0) {
+                            res.render("confirmed", {
+                                username: susername,
+                                userid: sid,
+                                order_details: orderResults,
+                                item_count: item_in_cart,
+                            });
+                        } else {
+                            res.render("confirmed", {
+                                username: susername,
+                                userid: sid,
+                                order_details: [],
+                                item_count: 0,
+                            });
+                        }
                     }
                 );
             } else {
@@ -368,12 +342,36 @@ app.get("/confirmed", function (req, res, next) {
     );
 });
 
-
 app.post("/confirmed", function (req, res, next) {
     res.render("confirmed");
 });
 
-
+app.get("/myOrders", function (req, res, next) {
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+    conn.query(
+        "SELECT id, username FROM users WHERE id= ? and username= ?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                conn.query(
+                    "SELECT od.order_id, od.user_id, od.quantity, od.price, od.datetime, prod.prod_id, prod.prod_name, prod.prod_img FROM order_dispatch od, products prod WHERE od.user_id = ? AND prod.prod_id = od.prod_id ORDER BY od.datetime DESC",
+                    [sid],
+                    function (error, orderResults) {
+                        if (!error) {
+                            res.render("myOrders", {
+                                order_history: orderResults,
+                                item_count: item_in_cart,
+                            });
+                        }
+                    }
+                );
+            } else {
+                res.render("signIn");
+            }
+        }
+    );
+});
 
 // Logging out the customer
 
@@ -382,10 +380,157 @@ app.get("/logOut", function (req, res, next) {
     return res.redirect("/signIn");
 });
 
+/*++++++++++++++++++++++++++++++++++Admin End Portal++++++++++++++++++++++++++++++++*/
+
 // Rendering the Admin Sign In Page
 
 app.get("/adminSignIn", function (req, res, next) {
     res.render("adminSignIn");
+});
+
+app.post("/adminSignIn", function (req, res, next) {
+    const userName = req.body.userName;
+    const password = req.body.password;
+
+    conn.query(
+        "SELECT username, password FROM admin WHERE username=?",
+        [userName],
+        function (error, results) {
+            if (error) {
+                res.render("signIn");
+            } else {
+                if (results[0].password === password) {
+                    conn.query(
+                        "SELECT id, username FROM admin WHERE username=?",
+                        [userName],
+                        function (error, results) {
+                            if (error) res.sendStatus(404);
+                            else {
+                                const aid = results[0].id;
+                                const ausername = results[0].username;
+                                res.cookie("cookuid", aid);
+                                res.cookie("cookusername", ausername);
+                                res.redirect("adminHomePage");
+                            }
+                        }
+                    );
+                } else {
+                    res.render("adminSignIn");
+                }
+            }
+        }
+    );
+});
+
+// Rendering the Admin Home Page
+
+app.get("/adminHomePage", function (req, res, next) {
+    console.log("cookuid: ", req.cookies.cookuid);
+    console.log("cookusername: ", req.cookies.cookusername);
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+    conn.query(
+        "SELECT id, username FROM admin WHERE id= ? and username= ?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                res.render("adminHomePage", {
+                    username: susername,
+                    userid: sid,
+                    item: results,
+                });
+            } else {
+                res.render("adminSignIn");
+            }
+        }
+    );
+});
+
+// Rendering Admin View for Dispatching Orders
+
+app.get("/adminView_Dispatch", function (req, res, next) {
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+
+    conn.query(
+        "SELECT id, username FROM admin WHERE id= ? and username= ?",
+        [sid, susername],
+        function (error, adminResults) {
+            if (!error && adminResults) {
+                conn.query(
+                    "SELECT * FROM orders ORDER BY datetime",
+                    function (error, dispatchResults) {
+                        res.render("adminView_Dispatch", {
+                            username: susername,
+                            userid: sid,
+                            orders_dispatched: dispatchResults,
+                        });
+                    }
+                );
+            } else {
+                res.render("adminSignIn");
+            }
+        }
+    );
+});
+
+let total_orders = [];
+
+app.post("/adminView_Dispatch", function (req, res, next) {
+    total_orders = req.body.order_id_container;
+    let unique = [];
+    total_orders.forEach((index) => {
+        if (!unique.includes(index)) {
+            unique.push(index);
+        }
+    });
+    for (let i = 0; i < unique.length; i++) {
+        conn.query(
+            "SELECT * FROM orders WHERE order_id=?",
+            [unique[i]],
+            function (error, resultsItem) {
+                if (!error) {
+                    let currDate = new Date();
+                    conn.query(
+                        "INSERT INTO order_dispatch (order_id, user_id, prod_id, quantity, price, datetime) VALUES (?,?,?,?,?,?)",
+                        [
+                            resultsItem[0].order_id,
+                            resultsItem[0].user_id,
+                            resultsItem[0].prod_id,
+                            resultsItem[0].quantity,
+                            resultsItem[0].price,
+                            currDate,
+                        ],
+                        function (error, results) {
+                            if (!error) {
+                                conn.query(
+                                    "DELETE FROM orders WHERE order_id=?",
+                                    [resultsItem[0].order_id],
+                                    function (error, results2) {
+                                        if (!error) {
+                                        } else {
+                                            res.sendStatus(500).send("Something Went Wrong :( ");
+                                        }
+                                    }
+                                );
+                            } else {
+                                res.sendStatus(500).send("Something Went Wrong :( ");
+                            }
+                        }
+                    );
+                } else {
+                    res.sendStatus(500).send("Something Went Wrong :( ");
+                }
+            }
+        );
+    }
+
+    conn.query("SELECT * FROM orders ORDER BY datetime", function (error, dispatchResults2) {
+        res.render("adminView_Dispatch", {
+            username: req.cookies.cookusername,
+            dispatched_orders: dispatchResults2,
+        });
+    });
 });
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

@@ -22,7 +22,7 @@ input {
     box-shadow: 0 1rem 2rem inset rgb(60, 60, 60);
 }
 
-button {
+.form-btn {
     background: #057023;
     color: #fff;
     padding: 1rem 2rem;
@@ -33,13 +33,31 @@ button {
     text-align: center;
     font-size: 2rem;
     transition: all 0.5s ease-in-out;
-    box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; 
+    box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4;
 }
 
-button:hover {
+.form-btn:hover {
     background-color: #04aa52;
     color: #000;
     transition: all 0.5s ease-in-out;
+}
+
+input[type="checkbox"] {
+    margin: 1rem;
+    font: inherit;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 20%;
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+input[type="checkbox"]:checked {
+    opacity: 1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0f0;
 }
 
 i {
