@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/forms.css" />
 
         <title>My Orders History</title>
     </head>
@@ -45,31 +46,26 @@
                                         id="profile-btn"
                                     ></ion-icon>
                                 </button>
-                                <ul class="profile-div" id="profile-div">
-                                    <li>
-                                        <ion-icon name="person-outline"></ion-icon>
-                                        <a href="/myProfile">My Profile</a>
-                                    </li>
-                                    <li>
-                                        <ion-icon name="bag-check-outline"></ion-icon>
-                                        <a href="/myOrders">My Orders</a>
-                                    </li>
-                                    <li>
-                                        <ion-icon name="pencil-outline"></ion-icon>
-                                        <a href="/editProfile">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <ion-icon name="log-out-outline"></ion-icon>
-                                        <a href="/logOut">Logout</a>
-                                    </li>
-                                </ul>
+                                <ul class="profile-div " id="profile-div">
+                                <li>
+                                    <a href="/myProfile"><ion-icon name="person-outline"></ion-icon>My Profile</a>
+                                </li>
+                                <li>
+                                    <a href="/myOrders"><ion-icon name="bag-check-outline"></ion-icon>My Orders</a>
+                                </li>
+                                <li>
+                                    <a href="/editProfile"><ion-icon name="pencil-outline"></ion-icon>Edit Profile</a>
+                                </li>
+                                <li>
+                                    <a href="/logOut"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
+                                </li>
+                            </ul>
                             </span>
                         </div>
                     </li>
                 </ul>
             </nav>
         </header>
-        <main>
             <main>
             <section id="cart">
 
@@ -82,13 +78,13 @@
                         <thead>
                             <tr>
                         <th style="width: 5%">S.No.:</th>
-                        <th style="width: 10%">Product</th>
+                        <th style="width: 15%">Product</th>
                         <th style="width: 15%">Product Name</th>
                         <th style="width: 10%">Price</th>
                         <th style="width: 5%">Quantity</th>
                         <th style="width: 15%">Total Price</th>
                         <th style="width: 20%">Order ID</th>
-                        <th style="width: 20%">Date/Time</th>
+                        <th style="width: 15%">Date/Time</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -107,8 +103,12 @@
                         <% } %>
                     </tbody>
                 </table>
+                <br><br>
+                <i style="font-size: 2rem"
+                >Shop Now ▶ <span><a href="/store" target="_blank">Click Here</a></span></i
+                >
+                <br><br>
             </div>
-        </main>
         </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">

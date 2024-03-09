@@ -61,15 +61,33 @@ app.get("/signUp", function (req, res, next) {
 
 app.post("/signUp", function (req, res, next) {
     const name = req.body.name;
-    const address = req.body.address;
     const email = req.body.email;
     const mobile = req.body.mobile;
     const userName = req.body.userName;
     const password = req.body.password;
+    const address = req.body.address;
+    const dob = req.body.dob;
+    const addCountry = req.body.country;
+    const addPincode = req.body.pincode;
+    const bloodgroup = req.body.bloodgroup;
+    const gender = req.body.gender;
 
     conn.query(
-        "INSERT INTO users (id, name, email,  mobileNo, username, password, address) VALUES (?,?,?,?,?,?,?)",
-        [uuidv4(), name, email, mobile, userName, password, address],
+        "INSERT INTO users (id, name, dateOfbirth, bloodgroup, gender, email,  mobileNo, username, password, address, country, pincode) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+        [
+            uuidv4(),
+            name,
+            dob,
+            bloodgroup,
+            gender,
+            email,
+            mobile,
+            userName,
+            password,
+            address,
+            addCountry,
+            addPincode,
+        ],
         function (error, results, fields) {
             if (error) console.log(error);
             else res.render("signIn");
@@ -169,7 +187,7 @@ app.get("/myCart", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id= ? and username= ?",
+        "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
@@ -200,7 +218,7 @@ app.post("/checkout", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id = ? and username= ? ",
+        "SELECT id, username FROM users WHERE id = ? AND username= ? ",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
@@ -283,7 +301,7 @@ app.post("/checkout", function (req, res, next) {
 //     const sid = req.cookies.cookuid;
 //     const susername = req.cookies.cookusername;
 //     conn.query(
-//         "SELECT id, username FROM users WHERE id= ? and username= ?",
+//         "SELECT id, username FROM users WHERE id= ? AND username= ?",
 //         [sid, susername],
 //         function (error, results) {
 //             if (!error && results) {
@@ -310,7 +328,7 @@ app.get("/confirmed", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id= ? and username= ?",
+        "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, userResults) {
             if (!error && userResults && userResults.length > 0) {
@@ -346,11 +364,41 @@ app.post("/confirmed", function (req, res, next) {
     res.render("confirmed");
 });
 
+// Rendering My Profile Page of the Customer
+
+app.get("/myProfile", function (req, res, next) {
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+    conn.query(
+        "SELECT id, username FROM users WHERE id=? AND username=?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                conn.query(
+                    "SELECT name, DATE_FORMAT(dateOfBirth, '%M %e, %Y') AS dateOfbirth, bloodgroup, gender, email, mobileNo, username, address, country, pincode FROM users WHERE id= ? AND username= ?",
+                    [sid, susername],
+                    function (error, userResults) {
+                        if (!error) {
+                            res.render("myProfile", {
+                                userid: sid,
+                                username: susername,
+                                user_details: userResults,
+                            });
+                        }
+                    }
+                );
+            }
+        }
+    );
+});
+
+// Rendering the My Orders Page of the Customer
+
 app.get("/myOrders", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id= ? and username= ?",
+        "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
@@ -360,7 +408,126 @@ app.get("/myOrders", function (req, res, next) {
                     function (error, orderResults) {
                         if (!error) {
                             res.render("myOrders", {
+                                username: susername,
+                                userid: sid,
                                 order_history: orderResults,
+                                item_count: item_in_cart,
+                            });
+                        }
+                    }
+                );
+            } else {
+                res.render("signIn");
+            }
+        }
+    );
+});
+
+// Rendering the Edit Profile Page of the customer
+
+app.get("/editProfile", function (req, res, next) {
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+    conn.query(
+        "SELECT id, username FROM users WHERE id=? AND username=?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                res.render("editProfile", {
+                    username: susername,
+                    userid: sid,
+                    item_count: item_in_cart,
+                });
+            }
+        }
+    );
+});
+
+// Changing Address
+
+app.post("/address", function (req, res, next) {
+    const sid = req.cookies.cookuid;
+    const susername = req.cookies.cookusername;
+    conn.query(
+        "SELECT id, username FROM usres WHERE id= ? AND username=?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                const address = req.body.address;
+                const country = req.body.country;
+                const pincode = req.body.pincode;
+                conn.query(
+                    "UPDATE users SET address=?, country=?, pincode=? WHERE id=?",
+                    [address, country, pincode, sid],
+                    function (error, new_results) {
+                        if (!error) {
+                            res.render("editProfile", {
+                                username: susername,
+                                userid: sid,
+                                item_count: item_in_cart,
+                            });
+                        }
+                    }
+                );
+            } else {
+                res.render("signIn");
+            }
+        }
+    );
+});
+
+// Changing Contact
+
+app.post("/conatct", function (req, res, next) {
+    const sid = req.body.cookuid;
+    const susername = req.bosy.cookusername;
+
+    conn.query(
+        "SELECT id, username FROM users WHERE id=? AND username=?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                const mobileNo = req.body.mobile;
+                conn.query(
+                    "UPDATE users SET mobileNo=? WHERE id=? ",
+                    [mobileNo, sid],
+                    function (error, new_results) {
+                        if (!error) {
+                            res.render("editProfile", {
+                                username: susername,
+                                userid: sid,
+                                item_count: item_in_cart,
+                            });
+                        }
+                    }
+                );
+            } else {
+                res.render("signIn");
+            }
+        }
+    );
+});
+
+// Changing Password
+
+app.post("/password", function (req, res, next) {
+    const sid = req.body.cookuid;
+    const susername = req.body.cookusername;
+    conn.query(
+        "SELECT id, username FROM users WHERE id=? AND username=?",
+        [sid, susername],
+        function (error, results) {
+            if (!error && results) {
+                const old_password = req.body.old_password;
+                const new_password = req.body.new_password;
+                conn.query(
+                    "UPDATE users SET password=? WHERE id=? AND password=?",
+                    [new_password, sid, old_password],
+                    function (error, new_results) {
+                        if (!error) {
+                            res.render("editProfile", {
+                                username: susername,
+                                userid: sid,
                                 item_count: item_in_cart,
                             });
                         }
@@ -430,7 +597,7 @@ app.get("/adminHomePage", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM admin WHERE id= ? and username= ?",
+        "SELECT id, username FROM admin WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
@@ -453,7 +620,7 @@ app.get("/adminView_Dispatch", function (req, res, next) {
     const susername = req.cookies.cookusername;
 
     conn.query(
-        "SELECT id, username FROM admin WHERE id= ? and username= ?",
+        "SELECT id, username FROM admin WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, adminResults) {
             if (!error && adminResults) {
@@ -484,11 +651,13 @@ app.post("/adminView_Dispatch", function (req, res, next) {
             unique.push(index);
         }
     });
+    // console.log(unique);
     for (let i = 0; i < unique.length; i++) {
         conn.query(
             "SELECT * FROM orders WHERE order_id=?",
             [unique[i]],
             function (error, resultsItem) {
+                console.log(resultsItem);
                 if (!error) {
                     let currDate = new Date();
                     conn.query(

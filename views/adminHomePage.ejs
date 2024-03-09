@@ -21,7 +21,11 @@
         <style>
             main {
                 padding: 5rem;
-                margin-left: -10%;
+                /* margin-left: -10%; */
+            }
+            .lines {
+                margin-left: 45%;
+                text-align: center;
             }
         </style>
         <title>Home Page - ADMIN</title>
@@ -47,12 +51,15 @@
                                 </button>
                                 <ul class="profile-div" id="profile-div">
                                     <li>
-                                        <ion-icon name="person-outline"></ion-icon>
-                                        <a href="/myProfile">My Profile</a>
+                                        <a href="/myProfile"
+                                            ><ion-icon name="person-outline"></ion-icon>My
+                                            Profile</a
+                                        >
                                     </li>
                                     <li>
-                                        <ion-icon name="log-out-outline"></ion-icon>
-                                        <a href="/logOut">Logout</a>
+                                        <a href="/logOut"
+                                            ><ion-icon name="log-out-outline"></ion-icon>Logout</a
+                                        >
                                     </li>
                                 </ul>
                             </span>
@@ -65,11 +72,15 @@
             <h2 class="lines"></h2>
             <h1 class="sub-heading">Welcome Admin</h1>
             <h2 class="lines"></h2>
-            <div class="grid--3--cols">
-                <button class="form-btn"><a href="/adminAddProducts">Add New Products</a></button
-                ><button class="form-btn">
-                    <a href="/adminChangePrice"> Change Products Price</a></button
-                ><button class="form-btn">
+            <div
+                class="grid--3--cols"
+                style="text-align: center; margin-left: -8%; padding: 3.6rem 2.4rem"
+            >
+                <button class="form-btn"><a href="/adminAddProducts">Add New Products</a></button>
+                <button class="form-btn">
+                    <a href="/adminChangePrice"> Change Products Price</a>
+                </button>
+                <button class="form-btn">
                     <a href="/adminView_Dispatch">View & Dispatch Orders</a>
                 </button>
             </div>

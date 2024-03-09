@@ -10,7 +10,8 @@ label {
     margin-bottom: 0.8rem;
 }
 
-input {
+input,
+select {
     width: 40rem;
     height: 5rem;
     font-size: 1.8rem;
@@ -54,6 +55,10 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked {
     opacity: 1;
+}
+
+::-webkit-input-placeholder {
+    color: #363636;
 }
 
 ::-webkit-scrollbar-thumb {

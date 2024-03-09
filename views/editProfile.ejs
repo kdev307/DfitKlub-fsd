@@ -15,9 +15,18 @@
         />
         <link rel="stylesheet" type="text/css" href="stylesheets/general.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/forms.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
-
+        <style>
+            form {
+                background: none;
+                box-shadow: none;
+            }
+            .form-btn {
+                margin-left: 22%;
+            }
+        </style>
         <title>Edit Profile</title>
     </head>
 
@@ -69,7 +78,94 @@
                 </ul>
             </nav>
         </header>
-        <main></main>
+        <main>
+            <main>
+                <h2 class="lines"></h2>
+                <h1 class="sub-heading">Update Profile</h1>
+                <h2 class="lines"></h2>
+                <div class="grid--3--cols">
+                    <div>
+                        <h2 class="sub-heading">Address</h2>
+                        <form action="/updateAddress" method="post">
+                            <input
+                                type="text"
+                                placeholder="Enter your New Residential Address"
+                                required
+                                class="form-input"
+                                name="address"
+                                id="InputAddress"
+                            /><br /><br />
+                            <input
+                                type="text"
+                                placeholder="Enter your Country"
+                                required
+                                class="form-input"
+                                name="country"
+                                id="InputAddressCountry"
+                            /><br /><br />
+                            <input
+                                type="text"
+                                placeholder="Enter your Pincode"
+                                required
+                                class="form-input"
+                                name="pincode"
+                                id="InputAddressPin"
+                            /><br /><br />
+                            <button class="form-btn">Update Address</button>
+                        </form>
+                    </div>
+                    <div>
+                        <h2 class="sub-heading">Contact Deatils</h2>
+                        <form action="/updateContact" method="post">
+                            <input
+                                type="text"
+                                placeholder="Enter your New Mobile number"
+                                required
+                                class="form-input"
+                                name="mobile"
+                                id="InputMobile"
+                                maxlength="10"
+                            /><br /><br />
+                            <button class="form-btn" style="margin-left: 12%">
+                                Update Contact Number
+                            </button>
+                        </form>
+                    </div>
+                    <div>
+                        <h2 class="sub-heading">Update Password</h2>
+                        <form action="/updatePassword" method="post">
+                            <input
+                                type="password"
+                                placeholder="Enter Old Password"
+                                required
+                                class="form-input"
+                                id="InputOldPassword"
+                                name="old_password"
+                            /><br /><br />
+                            <input
+                                type="password"
+                                placeholder="Enter New Password"
+                                required
+                                class="form-input"
+                                name="new_password"
+                                id="InputPassword"
+                                pattern=".{8,}"
+                                title="Minimum 8 character"
+                            /><br /><br />
+                            <input
+                                type="password"
+                                placeholder="Confirm New Password"
+                                required
+                                class="form-input"
+                                name="confirmPassword"
+                                id="ConfirmInputPassword"
+                            /><br /><br />
+                            <button class="form-btn">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">
                 <div class="address-col">

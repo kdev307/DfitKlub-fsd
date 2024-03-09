@@ -15,40 +15,11 @@
         />
         <link rel="stylesheet" type="text/css" href="stylesheets/general.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/home.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/forms.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
-        <link rel="stylesheet" type="text/css" href="stylesheets/forms.css" />
-        <title>My Profile</title>
-        <style>
-            .prof-container{
-                padding: 0 10rem;
-                color: #fff;
-                
-            }
-            .prof-img{
-                background-image: linear-gradient(135deg,rgba(0, 0, 0),rgba(25, 25, 25, 0.75),rgba(0, 0, 0, 0.95));
-                text-align: center;
-                font-size: 2rem;
-                padding: 10rem 18rem;
-                border-radius: 10%;
-                /* border: 0.4rem solid #fff; */
-                box-shadow: 0 2rem 4rem rgba(255, 255, 255, 0.545);
-            }
-            .prof-details{
-                opacity: 1;
-                font-family: "Poppins", sans-serif;
-                font-weight: 600;
-                margin: 10rem 0rem;
-                line-height: 5rem;
-                font-size: 1.7rem;
-            }
-            .prof-title{
-                padding-left: 4.8rem;
-                text-align: justify;
-            }
-            .prof-values{
-                text-align: right;
-            }
+
+        <title>Admin View: Dispatch Orders</title>
         </style>
     </head>
 
@@ -59,12 +30,6 @@
             </a>
             <nav class="profile-nav">
                 <ul class="main-nav-user-list">
-                    <li>
-                        <a onclick="openMyCart()" class="main-nav-link"
-                            ><ion-icon name="cart-outline"></ion-icon
-                            ><sup class="prod_count" id="prod_count">0</sup></a
-                        >
-                    </li>
                     <li>
                         <div style="color: #fff">
                             <b><%= username %></b>
@@ -78,27 +43,11 @@
                                 </button>
                                 <ul class="profile-div" id="profile-div">
                                     <li>
-                                        <a href="/myProfile"
-                                            ><ion-icon name="person-outline"></ion-icon>My
-                                            Profile</a
-                                        >
+                                        
+                                        <a href="/myProfile"><ion-icon name="person-outline"></ion-icon>My Profile</a>
                                     </li>
                                     <li>
-                                        <a href="/myOrders"
-                                            ><ion-icon name="bag-check-outline"></ion-icon>My
-                                            Orders</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a href="/editProfile"
-                                            ><ion-icon name="pencil-outline"></ion-icon>Edit
-                                            Profile</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a href="/logOut"
-                                            ><ion-icon name="log-out-outline"></ion-icon>Logout</a
-                                        >
+                                        <a href="/logOut"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
                                     </li>
                                 </ul>
                             </span>
@@ -108,60 +57,7 @@
             </nav>
         </header>
         <main>
-            <h2 class="lines"></h2>
-            <h1 class="sub-heading">My Profile</h1>
-            <h2 class="lines"></h2>
-            <a href="/editProfile">
-                <b>
-                    <ion-icon
-                        name="pencil-outline"
-                        style="color: #fff; padding:0.8rem ;margin-left: 95%; font-size: 2.4rem; border-radius: 50%; border: 2px solid #fff;"
-                    ></ion-icon
-                </b>
-            </a>
-            <div class="grid--2--cols prof-container" style= "text-align: center">
-                <div class="prof-img">
-                    <div>
-                        <ion-icon name="person" style="font-size: 20rem; padding: 2.4rem; border: 0.5rem solid #fff; border-radius: 50%; box-shadow: 0rem 0rem 4rem rgba(255, 255, 255, 0.545);"></ion-icon><br><br>
-                    </div> 
-                    <%= user_details[0].name %> <br><br>
-                    <div class="grid--2--cols">
-                        <div><%= user_details[0].bloodgroup %></div>
-                        <div><%= user_details[0].gender %> </div>
-                                <br /><br />
-                    </div>
-                </div>
-                <div class="grid--2--cols prof-details" >
-                    <div class="prof-title">
-                        <p>Name:  </p>
-                        <p>Gender: </p>
-                        <p>Bloodgroup:</p>
-                        <p>Date of Birth:</p>
-                        <p>Mobile No.: </p>
-                        <p>Registered Email: </p>
-                        <p>Username: </p>
-                        <p>Registered Address: </p>
-                        <p>Country: </p>
-                        <p>Pincode: </p>
-                    </div>
-                    <div class="prof-values"><p><%= user_details[0].name %></p>
-                        <p><%= user_details[0].gender %></p>
-                        <p><%= user_details[0].bloodgroup %></p>
-                        <p><%= user_details[0].dateOfbirth %></p>
-                        <p><%= user_details[0].mobileNo %></p>
-                        <p><%=user_details[0].email %></p>
-                        <p><%= user_details[0].username %></p>
-                        <p><%= user_details[0].address %></p>
-                        <p><%= user_details[0].country %></p>
-                        <p><%= user_details[0].pincode %></p>
-                    </div>
-                </div>
-            </div>
-            <br><br>
-            <i style="font-size: 2rem"
-            >Shop Now ▶ <span><a href="/store" target="_blank">Click Here</a></span></i
-            >
-            <br><br>
+            
         </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">
@@ -178,8 +74,7 @@
                         <figure class="mobile">
                             <ion-icon class="contacts-icon" name="call-outline"></ion-icon>
                             <figcaption>
-                                <a class="footer-link" href="tel:415-201-6370">044-78945234</a
-                                ><br />
+                                <a class="footer-link" href="tel:415-201-6370">044-78945234</a><br>
                                 <a class="footer-link" href="tel:415-201-6370">044-78945235</a>
                             </figcaption>
                         </figure>
@@ -187,13 +82,13 @@
                             <ion-icon class="contacts-icon" name="mail-outline"></ion-icon>
                             <figcaption>
                                 <a class="footer-link" href="malito:help@fitklub.com"
-                                    >help@fitklub.com</a
+                                >help@fitklub.com</a
                                 >
                                 <a class="footer-link" href="malito:hello@fitklub.com"
                                     >hello@fitklub.com</a
-                                >
-                            </figcaption>
-                        </figure>
+                                    >
+                                </figcaption>
+                            </figure>
                     </address>
                 </div>
                 <div class="follow grid--5--cols">
@@ -241,7 +136,6 @@
         src="// https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
     ></script>
 
-    <script src="javascripts/storeFilter.js"></script>
     <script src="javascripts/profMenu.js"></script>
-    <script src="javascripts/cartFunctions.js"></script>
+
 </html>
