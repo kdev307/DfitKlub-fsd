@@ -105,16 +105,26 @@
                     <p>Your order has been successfully placed.</p>
                     <p>Thank you for shopping with us !</p>
                     <p><b>Order Details</b></p>
-                    <!-- The code is not working when using EJS but the data is being inserted into the database -->
-                    <% for(let i=0;i<order_details.length;i++) { %>
-                        <p><b>Order ID: </b></p>
-                        <span><%= order_details[i].order_id %></span><br>
-                    <% } %>
-                    <% for(let i=0;i<order_details.length;i++) { %>
-                        <p><b>Expected Delivery: </b></p>
-                        <span><%= order_details[i].datetime %></span><br>
-                    <% } %>
-                    
+                    <br><br>
+                    <table style="margin-left: 10%; margin-right: 10%;">
+                        <thead>
+                            <tr>
+                                <th style="width: 6%;">S.No.</th>
+                                <th style="width: 47%;">Order ID</th>
+                                <th style="width: 47%;">Expected Delivery</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0;i<order_details.length;i++) { %>
+                            <tr>
+                                <td><%= i+1 %></td>
+                                <td><%= order_details[i].order_id %></td>
+                                <td><%= order_details[i].datetime %></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    <br><br>
                 </div>
             </section>
         </main>

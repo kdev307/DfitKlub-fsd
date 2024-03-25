@@ -43,10 +43,6 @@
                                 </button>
                                 <ul class="profile-div" id="profile-div">
                                     <li>
-                                        
-                                        <a href="/myProfile"><ion-icon name="person-outline"></ion-icon>My Profile</a>
-                                    </li>
-                                    <li>
                                         <a href="/logOut"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
                                     </li>
                                 </ul>
@@ -57,7 +53,23 @@
             </nav>
         </header>
         <main>
-            
+            <div class="form-container">
+                <form action="/admin_updatePrice" method="post" enctype="multipart/form-data">
+                    <label for="foods_price" >
+                        <select name="item_name" id="item_name" class="form-input">
+                            <option value="None" >Select Product</option>
+                            <% let size = items.length; %>
+                            <% for(let i=0;i<size;i++) { %>
+                                <option value="<%= items[i].prod_name %>" ><%= items[i].prod_name %></option>
+                            <% } %>
+                        </select>
+                    </label>
+                    <br><br>
+                    <input type="text" placeholder="Enter New Price" required class="form-input" name="NewProdPrice" id="NewProdPrice"/><br><br>
+                    <button class="form-btn" type="submit">Update Price</button>
+                </form>
+            </div>
+            <br><br>
         </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">

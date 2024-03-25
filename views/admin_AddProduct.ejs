@@ -19,7 +19,7 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/storeHome.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/common.css" />
 
-        <title>Admin View: Dispatch Orders</title>
+        <title>Admin View: Add New Products</title>
         </style>
     </head>
 
@@ -43,10 +43,6 @@
                                 </button>
                                 <ul class="profile-div" id="profile-div">
                                     <li>
-                                        
-                                        <a href="/myProfile"><ion-icon name="person-outline"></ion-icon>My Profile</a>
-                                    </li>
-                                    <li>
                                         <a href="/logOut"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
                                     </li>
                                 </ul>
@@ -57,7 +53,34 @@
             </nav>
         </header>
         <main>
-            
+            <h2 class="lines"></h2>
+            <h1 class="sub-heading">Dispatch Orders History</h1>
+            <h2 class="lines"></h2>
+            <div class="form-container">
+
+                <form action="/admin_addProduct" method="post" enctype="multipart/form-data">
+                    <input type="text" placeholder="Enter Product ID" required class="form-input" name="prodID" id="prodID"/><br><br>
+                    <input type="text" placeholder="Enter Product Name" required class="form-input" name="prodName" id="prodName" /><br><br>
+                    <input type="text" placeholder="Enter Product Description" required class="form-input" name="prodDescription" id="prodDescription" /><br><br>
+                    <label><input type="radio" name="prodCategory" id="men" value="men" class="form-check-input"/>&nbsp;Men</label>&nbsp;
+                    <label><input type="radio" name="prodCategory" id="women" value="women" class="form-check-input"/>&nbsp;Women</label> 
+                    <label><input type="radio" name="prodCategory" id="accessories" value="accessories" class="form-check-input"/>&nbsp;Accessories</label>&nbsp;
+                    <br>
+                    <label><input type="radio" name="prodCategory" id="coupons" value="coupons" class="form-check-input"/>&nbsp;Coupons</label>&nbsp;
+                    <label><input type="radio" name="prodCategory" id="equipments" value="equipments" class="form-check-input"/>&nbsp;Equipments</label>&nbsp;
+                    <label><input type="radio" name="prodCategory" id="sports-bad" value="sports-bad" class="form-check-input"/>&nbsp;Badminton</label>&nbsp;
+                    <br>
+                    <label><input type="radio" name="prodCategory" id="sports-bskt" value="sports-bskt" class="form-check-input"/>&nbsp;Basketball</label>&nbsp;
+                    <label><input type="radio" name="prodCategory" id="sports-cric" value="sports-cric" class="form-check-input"/>&nbsp;Cricket</label>&nbsp;
+                    <label><input type="radio" name="prodCategory" id="sports-foot" value="sports-foot" class="form-check-input"/>&nbsp;Football</label>&nbsp;
+                    <br><br>
+                    <input type="text" placeholder="Enter Product Price (in ₹)" required class="form-input" name="prodPrice" id="prodPrice" /><br><br>
+                    <input type="text" placeholder="Enter Product Rating (Out of 5)" required class="form-input" name="prodRating" id="prodRating" /><br><br>
+                    <input type="file" name="prodImg" id="prodImg" required class="form-input" accept="" style="color: #cecbcb;"><br><br>
+                    <button class="form-btn" type="submit">Add New Product</button>
+                </form>    
+        </div>
+        <br><br>
         </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">

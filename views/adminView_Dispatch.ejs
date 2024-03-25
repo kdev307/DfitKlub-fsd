@@ -43,10 +43,6 @@
                                 </button>
                                 <ul class="profile-div" id="profile-div">
                                     <li>
-                                        
-                                        <a href="/myProfile"><ion-icon name="person-outline"></ion-icon>My Profile</a>
-                                    </li>
-                                    <li>
                                         <a href="/logOut"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
                                     </li>
                                 </ul>
@@ -58,14 +54,12 @@
         </header>
         <main>
             <section>
-
                     <h2 class="lines"></h2>
                     <h1 class="sub-heading">Dispatch Orders History</h1>
                     <h2 class="lines"></h2>
                     <% let count = 0; %> 
                     <% let total_price = 0; %> 
                     <% let total_items = 0; %>
-
                     <table id="order" style="color: #f0f8ff;">
                         <thead>
                             <tr>
@@ -93,7 +87,7 @@
                                     <td><%= orders_dispatched[i].quantity %></td>
                                     <td><%= orders_dispatched[i].price %></td>
                                     <td><%= orders_dispatched[i].datetime %></td>
-                                    <td><input type="checkbox" name="<%= orders_dispatched[i].order_id%>" id="dispatch" value="true" onchange="checkDispatch()"></td>
+                                    <td><input type="checkbox" class="dispatch" name="<%= orders_dispatched[i].order_id%>" id="dispatch" value="true" onchange="checkDispatch()"></td>
                                 </tr>
                             <% } %>
                         <% } %>

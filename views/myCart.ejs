@@ -68,57 +68,58 @@
         <main>
             <section id="cart">
                 <form action="/checkout" method="post">
-
                     <h2 class="lines"></h2>
                     <h1 class="sub-heading">My Cart</h1>
                     <h2 class="lines"></h2>
                     <% let count = 0; %> 
                     <% let total_price = 0; %> 
-                <% let total_items = 0; %>
-
+                    <% let total_items = 0; %>
                     <table id="mycart" style="color: #f0f8ff;">
                         <thead>
                             <tr>
-                        <th style="width: 5%">S.No.:</th>
-                        <th style="width: 15%">Product</th>
-                        <th style="width: 20%">Product Name</th>
-                        <th style="width: 30%">Product Description</th>
-                        <th style="width: 10%">Price</th>
-                        <th style="width: 5%">Quantity</th>
-                        <th style="width: 15%">SubTotal</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <% for (let i=0;i<items.length;i++) { %>
-                            <tr>
-                                <% count++ %>
-                                <td><%= i+1 %></td>
-                                <td><img src="/images/shop/<%=items[i].prod_img %>" alt="" style="height: 30rem; width: 20rem; border-radius: 10%; border: 2px solid #ffffffb3; box-shadow: px 4px 8px #fff;"></td>
-                                <td><%= items[i].prod_name %></td>
-                                <td><%= items[i].prod_description %></td>
-                                <td>₹<span class="item-price"><%= items[i].prod_price %></span></td>
-                                <td><input type="number" style="padding: 0.5rem; background-color: transparent; color: #fff; width: 5rem; font-size: 2rem; box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; text-align: center;" name="quantity" id="quantity" class="quantity" style="width: 3rem;" value="1" min="0" onchange="updateData(this.value, '<%= i %>' )"></td>
-                                <td>₹<span class="price"><%= items[i].prod_price %></span></td>
-                                <input type="hidden" name="itemid" value="<%= items[i].prod_id %>">
-                                <input type="hidden" name="subprice" value="<%= items[i].prod_price %>">
-                                <% total_price += items[i].prod_price %>
+                                <th style="width: 5%">S.No.:</th>
+                                <th style="width: 15%">Product</th>
+                                <th style="width: 20%">Product Name</th>
+                                <th style="width: 30%">Product Description</th>
+                                <th style="width: 10%">Price</th>
+                                <th style="width: 5%">Quantity</th>
+                                <th style="width: 15%">SubTotal</th>
                             </tr>
-                        <% } %>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5"><b>Total</b></td>
-                            <td id="total_quantity"><%= count %></td>
-                            <span id="initial_quantity" ><%= count %></span>
-                            <td id="total_price">₹ <%= total_price %></td>
-                            <span id="initial_price" ><%= total_price %></span>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            <button class="other-btns"  type="submit">Buy Now</button>
-        </form>
+                        </thead>
+                        <tbody>
+                            <% for (let i=0;i<items.length;i++) { %>
+                                <tr>
+                                    <% count++ %>
+                                    <td><%= i+1 %></td>
+                                    <td><img src="/images/shop/<%=items[i].prod_img %>" alt="" style="height: 30rem; width: 20rem; border-radius: 10%; border: 2px solid #ffffffb3; box-shadow: px 4px 8px #fff;"></td>
+                                    <td><%= items[i].prod_name %></td>
+                                    <td><%= items[i].prod_description %></td>
+                                    <td>₹<span class="item-price"><%= items[i].prod_price %></span></td>
+                                    <td><input type="number" style="padding: 0.5rem; background-color: transparent; color: #fff; width: 5rem; font-size: 2rem; box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; text-align: center;" name="quantity" id="quantity" class="quantity" style="width: 3rem;" value="1" min="0" onchange="updateData(this.value, '<%= i %>' )"></td>
+                                    <td>₹<span class="price"><%= items[i].prod_price %></span></td>
+                                    <input type="hidden" name="itemid" value="<%= items[i].prod_id %>">
+                                    <input type="hidden" name="subprice" value="<%= items[i].prod_price %>">
+                                    <% total_price += items[i].prod_price %>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"><b>Total</b></td>
+                                <td id="total_quantity"><%= count %></td>
+                                <span id="initial_quantity" ><%= count %></span>
+                                <td id="total_price">₹ <%= total_price %></td>
+                                <span id="initial_price" ><%= total_price %></span>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <button class="other-btns"  type="submit">Buy Now</button>
+                </form>
             </section>
+            <i style="font-size: 2rem"
+            >Shop More ▶ <span><a href="/store" target="_blank">Click Here</a></span></i
+            >
+            <br><br>
         </main>
         <footer class="footer" id="footer">
             <div class="grid--footer">

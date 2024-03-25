@@ -51,12 +51,6 @@
                                 </button>
                                 <ul class="profile-div" id="profile-div">
                                     <li>
-                                        <a href="/myProfile"
-                                            ><ion-icon name="person-outline"></ion-icon>My
-                                            Profile</a
-                                        >
-                                    </li>
-                                    <li>
                                         <a href="/logOut"
                                             ><ion-icon name="log-out-outline"></ion-icon>Logout</a
                                         >
@@ -74,11 +68,16 @@
             <h2 class="lines"></h2>
             <div
                 class="grid--3--cols"
-                style="text-align: center; margin-left: -8%; padding: 3.6rem 2.4rem"
+                style="
+                    grid-template-columns: 2;
+                    text-align: center;
+                    padding: 3.6rem 2.4rem;
+                    gap: 2rem;
+                "
             >
-                <button class="form-btn"><a href="/adminAddProducts">Add New Products</a></button>
+                <button class="form-btn"><a href="/admin_AddProduct">Add New Products</a></button>
                 <button class="form-btn">
-                    <a href="/adminChangePrice"> Change Products Price</a>
+                    <a href="/admin_UpdatePrice"> Change Product Price</a>
                 </button>
                 <button class="form-btn">
                     <a href="/adminView_Dispatch">View & Dispatch Orders</a>
