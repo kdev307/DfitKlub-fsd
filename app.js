@@ -315,25 +315,16 @@ app.get("/confirmed", function (req, res, next) {
         [sid, susername],
         function (error, userResults) {
             if (!error && userResults) {
-                conn.query("SELECT order_id, DATE_ADD(datetime, INTERVAL 3 DAY) AS new_datetime FROM orders WHERE user_id = ? AND datetime= ?", [sid, expectDelDate], function (error, results) {
-                    if (!error && results) {
-                        res.render("confirmed", {
-                            username: susername,
-                            userid: sid,
-                            order_details: results,
-                        });
-                    }
-                    else {
-                        console.log("Unable to Place the Order")
-                        res.render("signIn");
-                    }
-                })
-            } else {
-                console.log("Invalid User")
+                res.render("confirmed", {
+                    username: susername,
+                    userid: sid,
+                });
+            }
+            else {
+                console.log("Unable to Place the Order")
                 res.render("signIn");
             }
-        }
-    );
+        })
 });
 
 
