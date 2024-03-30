@@ -213,86 +213,91 @@ app.post("/myCart", function (req, res, next) {
 
 // Rendering the checkout (after clicking buy now on myCart Page)
 
+
 app.post("/checkout", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
         "SELECT id, username FROM users WHERE id = ? AND username= ? ",
         [sid, susername],
-        function (error, results) {
-            if (!error && results) {
-                conn.query("SELECT * FROM products", function (error, results) {
-                    if (!error) {
-                        const item_id = req.body.itemid;
-                        const qty = req.body.quantity;
-                        const total_sub_price = req.body.subprice;
-                        const userid = req.cookies.cookuid;
-                        let currDate = new Date();
-                        console.log("type: ", typeof item_id)
-                        console.log("id: ", item_id)
-                        console.log("len: ", item_id.length)
-                        if (item_id.length == 1) {
-                            if (qty[0] != 0) {
-                                conn.query(
-                                    "INSERT INTO orders (order_id, user_id, prod_id, quantity, price, datetime) VALUES (?, ?, ?, ?, ?, ?)",
-                                    [
-                                        uuidv4(),
-                                        userid,
-                                        item_id,
-                                        qty,
-                                        total_sub_price * qty,
-                                        currDate,
-                                    ],
-                                    function (error, results, fields) {
-                                        if (error) {
-                                            console.log(error);
-                                            res.sendStatus(500);
-                                        }
+        function (error, userResults) {
+            if (error) {
+                console.log(error);
+                return res.sendStatus(500);
+            }
+            if (userResults.length === 0) {
+                return res.render("signIn");
+            }
+
+            conn.query("SELECT * FROM products", function (error, productResults) {
+                if (error) {
+                    console.log(error);
+                    return res.sendStatus(500);
+                }
+                const item_id = req.body.itemid;
+                const qty = req.body.quantity;
+                const total_sub_price = req.body.subprice;
+                const userid = sid;
+                let currDate = new Date();
+                res.cookie("delDate", currDate);
+
+                if (typeof item_id === 'string') {
+                    if (Number(qty) !== 0) {
+                        conn.query(
+                            "INSERT INTO orders (order_id, user_id, prod_id, quantity, price, datetime) VALUES (?, ?, ?, ?, ?, ?)",
+                            [
+                                uuidv4(),
+                                userid,
+                                item_id,
+                                qty,
+                                total_sub_price * qty,
+                                currDate,
+                            ],
+                            function (error, results) {
+                                if (error) {
+                                    console.log(error);
+                                    return res.sendStatus(500);
+                                }
+                                cart_items_id = [];
+                                cart_item_details = [];
+                                item_in_cart = 0;
+                                getItemDetails(cart_items_id, 0);
+                                res.redirect("/confirmed");
+                            }
+                        );
+                    }
+                } else {
+                    item_id.forEach((item, i) => {
+                        if (qty[i] !== 0) {
+                            conn.query(
+                                "INSERT INTO orders (order_id, user_id, prod_id, quantity, price, datetime) VALUES (?, ?, ?, ?, ?, ?)",
+                                [
+                                    uuidv4(),
+                                    userid,
+                                    item,
+                                    qty[i],
+                                    total_sub_price[i] * qty[i],
+                                    currDate,
+                                ],
+                                function (error, results) {
+                                    if (error) {
+                                        console.log(error);
+                                        return res.sendStatus(500);
+                                    }
+                                    if (i === item_id.length - 1) {
+                                        // Last item processed
                                         cart_items_id = [];
                                         cart_item_details = [];
                                         item_in_cart = 0;
                                         getItemDetails(cart_items_id, 0);
-                                        // res.render("confirmed", {
-                                        //     username: susername,
-                                        //     userid: sid,
-                                        // });
                                         res.redirect("/confirmed");
                                     }
-                                );
-                            }
-                        } else {
-                            item_id.map((item, i) => {
-                                if (qty[i] != 0) {
-                                    conn.query(
-                                        "INSERT INTO orders (order_id, user_id, prod_id, quantity, price, datetime) VALUES (?, ?, ?, ?, ?, ?)",
-                                        [
-                                            uuidv4(),
-                                            userid,
-                                            item,
-                                            qty[i],
-                                            total_sub_price[i] * qty[i],
-                                            currDate,
-                                        ],
-                                        function (error, results, field) {
-                                            if (error) {
-                                                console.log(error);
-                                                res.send(500);
-                                            }
-                                        }
-                                    );
                                 }
-                            });
+                            );
                         }
-                        cart_items_id = [];
-                        cart_item_details = [];
-                        item_in_cart = 0;
-                        getItemDetails(cart_items_id, 0);
-                        res.redirect("/confirmed");
-                    }
-                });
-            } else {
-                res.render("signIn");
-            }
+                    });
+                }
+            });
         }
     );
 });
@@ -302,12 +307,15 @@ app.post("/checkout", function (req, res, next) {
 app.get("/confirmed", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
+    const expectDelDate = req.cookies.delDate;
+    console.log("Format of Delivery Date", typeof (expectDelDate));
+    console.log("Delivery Date", expectDelDate);
     conn.query(
         "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
-        function (error, results) {
-            if (!error && results) {
-                conn.query("SELECT order_id, datetime FROM orders WHERE user_id= ?", [sid], function (error, results) {
+        function (error, userResults) {
+            if (!error && userResults) {
+                conn.query("SELECT order_id, DATE_ADD(datetime, INTERVAL 3 DAY) AS new_datetime FROM orders WHERE user_id = ? AND datetime= ?", [sid, expectDelDate], function (error, results) {
                     if (!error && results) {
                         res.render("confirmed", {
                             username: susername,
@@ -316,10 +324,12 @@ app.get("/confirmed", function (req, res, next) {
                         });
                     }
                     else {
+                        console.log("Unable to Place the Order")
                         res.render("signIn");
                     }
                 })
             } else {
+                console.log("Invalid User")
                 res.render("signIn");
             }
         }
@@ -509,7 +519,8 @@ app.post("/password", function (req, res, next) {
 // Logging out the customer
 
 app.get("/logOut", function (req, res, next) {
-    res.clearCookie();
+    res.clearCookie('sid');
+    res.clearCookie('susername');
     return res.redirect("/signIn");
 });
 
@@ -675,10 +686,7 @@ app.post("/admin_updatePrice", function (req, res, next) {
                         conn.query("UPDATE products SET prod_price= ? WHERE prod_name= ?", [new_product_price, item_name],
                             function (error, results2) {
                                 if (!error) {
-                                    res.render("adminHomePage", {
-                                        username: susername,
-                                        userid: sid,
-                                    });
+                                    res.redirect("adminHomePage");
                                 }
                                 else {
                                     res.status(500).send("Cannot Update the Price");
@@ -762,8 +770,7 @@ app.post("/adminView_Dispatch", function (req, res, next) {
                                     "DELETE FROM orders WHERE order_id=?",
                                     [resultsItem[0].order_id],
                                     function (error, results2) {
-                                        if (!error) {
-                                        } else {
+                                        if (error) {
                                             res.sendStatus(500).send("Something Went Wrong :( ");
                                         }
                                     }

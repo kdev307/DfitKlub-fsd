@@ -95,7 +95,7 @@
                                     <td><%= items[i].prod_name %></td>
                                     <td><%= items[i].prod_description %></td>
                                     <td>₹<span class="item-price"><%= items[i].prod_price %></span></td>
-                                    <td><input type="number" style="padding: 0.5rem; background-color: transparent; color: #fff; width: 5rem; font-size: 2rem; box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; text-align: center;" name="quantity" id="quantity" class="quantity" style="width: 3rem;" value="1" min="0" onchange="updateData(this.value, '<%= i %>' )"></td>
+                                    <td><input type="number" style="padding: 0.5rem; background-color: transparent; color: #fff; width: 5rem; font-size: 2rem; box-shadow: inset 6px 6px 8px #454545, inset -6px -6px 8px #ffffffd4; text-align: center;" name="quantity" id="quantity" class="quantity" style="width: 3rem;" value="1" min="0" onchange="updateData(this.value, '<%= i %>' );"></td>
                                     <td>₹<span class="price"><%= items[i].prod_price %></span></td>
                                     <input type="hidden" name="itemid" value="<%= items[i].prod_id %>">
                                     <input type="hidden" name="subprice" value="<%= items[i].prod_price %>">

@@ -94,9 +94,9 @@
                                 <td><%= i+1 %></td>
                                 <td><img src="/images/shop/<%=order_history[i].prod_img %>" alt="" style="height: 25rem; width: 15rem; border-radius: 10%; border: 2px solid #ffffffb3; box-shadow: px 4px 8px #fff;"></td>
                                 <td><%= order_history[i].prod_name %></td>
-                                <td>₹<span class="item-price"><%= order_history[i].prod_price %></span></td>
+                                <td>₹<span class="item-price"><%= order_history[i].price %></span></td>
                                 <td><%= order_history[i].quantity %></td>
-                                <td>₹<span class="price"><%= order_history[i].prod_price * order_history[i].quantity %></span></td>
+                                <td>₹<span class="price"><%= order_history[i].price * order_history[i].quantity %></span></td>
                                 <td><%= order_history[i].order_id %></td>
                                 <td><%= order_history[i].datetime %></td>
                             </tr>
