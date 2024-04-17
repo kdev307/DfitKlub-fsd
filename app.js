@@ -413,7 +413,7 @@ app.get("/editProfile", function (req, res, next) {
 
 // Changing Address
 
-app.post("/address", function (req, res, next) {
+app.post("/updateAddress", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
@@ -446,9 +446,9 @@ app.post("/address", function (req, res, next) {
 
 // Changing Contact
 
-app.post("/conatct", function (req, res, next) {
+app.post("/updateContact", function (req, res, next) {
     const sid = req.body.cookuid;
-    const susername = req.bosy.cookusername;
+    const susername = req.body.cookusername;
     conn.query(
         "SELECT id, username FROM users WHERE id=? AND username=?",
         [sid, susername],
@@ -477,7 +477,7 @@ app.post("/conatct", function (req, res, next) {
 
 // Changing Password
 
-app.post("/password", function (req, res, next) {
+app.post("/updatePassword", function (req, res, next) {
     const sid = req.body.cookuid;
     const susername = req.body.cookusername;
     conn.query(
