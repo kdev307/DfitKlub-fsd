@@ -45,21 +45,21 @@ DfitKlub is a straightforward, comprehensive web project designed to offer e-com
 Here are some of the screenshot of Food Ordering Website.
 
 1. Landing Page :<br><br>
-   <img src="snaps/hero-section.png"><br><br>
-   <img src="snaps/about-us.png"><br><br>
-   <img src="snaps/programs.png"><br><br>
-   <img src="snaps/passes.png"><br><br>
-   <img src="snaps/gallery.png"><br><br>
-2. SignUp Page :<br><br> <img src="snaps/sign-up.png"><br><br>
-3. SignIn Page :<br><br> <img src="snaps/sign-in.png"><br><br>
-4. Store Page : <br><br> <img src="snaps/fitstore.png"><br><br>
-5. User Profile : <br><br> <img src="snaps/my-profile.png"><br><br>
-6. Edit Profile :<br><br> <img src="snaps/edit-profile.png"><br><br>
-7. Cart Page : <br><br> <img src="snaps/my-cart.png"><br><br>
-8. Confirmation Page :<br><br> <img src="snaps/order-confirmed.png"><br><br>
-9. Details and Order History Page :<br><br> <img src="snaps/my-order-history.png"><br><br>
-10. Admin SignIn Page : <br><br> <img src="snaps/admin-sign-in.png"><br><br>
-11. Admin Welcome Page :<br><br> <img src="snaps/admin-home.png"><br><br>
-12. Admin Add Product Page :<br><br> <img src="snaps/admin-add-product.png"><br><br>
-13. Update Product Price Page :<br><br> <img src="snaps/admin-update-price.png"><br><br>
-14. Admin Order View & Dispatching Page :<br><br> <img src="snaps/admin-dispatch-orders.png"><br><br>
+   <img src="screenshots/hero-section.png"><br><br>
+   <img src="screenshots/about-us.png"><br><br>
+   <img src="screenshots/programs.png"><br><br>
+   <img src="screenshots/passes.png"><br><br>
+   <img src="screenshots/gallery.png"><br><br>
+2. SignUp Page :<br><br> <img src="screenshots/sign-up.png"><br><br>
+3. SignIn Page :<br><br> <img src="screenshots/sign-in.png"><br><br>
+4. Store Page : <br><br> <img src="screenshots/fitstore.png"><br><br>
+5. User Profile : <br><br> <img src="screenshots/my-profile.png"><br><br>
+6. Edit Profile :<br><br> <img src="screenshots/edit-profile.png"><br><br>
+7. Cart Page : <br><br> <img src="screenshots/my-cart.png"><br><br>
+8. Confirmation Page :<br><br> <img src="screenshots/order-confirmed.png"><br><br>
+9. Details and Order History Page :<br><br> <img src="screenshots/my-order-history.png"><br><br>
+10. Admin SignIn Page : <br><br> <img src="screenshots/admin-sign-in.png"><br><br>
+11. Admin Welcome Page :<br><br> <img src="screenshots/admin-home.png"><br><br>
+12. Admin Add Product Page :<br><br> <img src="screenshots/admin-add-product.png"><br><br>
+13. Update Product Price Page :<br><br> <img src="screenshots/admin-update-price.png"><br><br>
+14. Admin Order View & Dispatching Page :<br><br> <img src="screenshots/admin-dispatch-orders.png"><br><br>
