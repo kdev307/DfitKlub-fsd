@@ -45,7 +45,7 @@ https://www.linkedin.com/posts/kdev307_fullstack-webdevelopment-learninganddevel
 
 ## Screenshots :
 
-Here are some of the screenshot of Food Ordering Website.
+Here are some of the screenshot of the full stack web application DfitKlub.
 
 1. Landing Page :<br><br>
    <img src="screenshots/hero-section.png"><br><br>
