@@ -338,7 +338,7 @@ app.get("/myProfile", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id=? AND username=?",
+        "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
@@ -397,7 +397,7 @@ app.get("/editProfile", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id=? AND username=?",
+        "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
@@ -417,7 +417,7 @@ app.post("/updateAddress", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM usres WHERE id= ? AND username=?",
+        "SELECT id, username FROM usres WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
@@ -425,7 +425,7 @@ app.post("/updateAddress", function (req, res, next) {
                 const country = req.body.country;
                 const pincode = req.body.pincode;
                 conn.query(
-                    "UPDATE users SET address=?, country=?, pincode=? WHERE id=?",
+                    "UPDATE users SET address= ?, country= ?, pincode= ? WHERE id= ?",
                     [address, country, pincode, sid],
                     function (error, new_results) {
                         if (!error) {
@@ -450,13 +450,13 @@ app.post("/updateContact", function (req, res, next) {
     const sid = req.body.cookuid;
     const susername = req.body.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id=? AND username=?",
+        "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
                 const mobileNo = req.body.mobile;
                 conn.query(
-                    "UPDATE users SET mobileNo=? WHERE id=? ",
+                    "UPDATE users SET mobileNo= ? WHERE id= ? ",
                     [mobileNo, sid],
                     function (error, new_results) {
                         if (!error) {
@@ -465,6 +465,11 @@ app.post("/updateContact", function (req, res, next) {
                                 userid: sid,
                                 item_count: item_in_cart,
                             });
+                        }
+                        else {
+                            // Handle update query error
+                            console.error("Error updating address:", error);
+                            res.render("errorPage");
                         }
                     }
                 );
@@ -481,14 +486,14 @@ app.post("/updatePassword", function (req, res, next) {
     const sid = req.body.cookuid;
     const susername = req.body.cookusername;
     conn.query(
-        "SELECT id, username FROM users WHERE id=? AND username=?",
+        "SELECT id, username FROM users WHERE id= ? AND username= ?",
         [sid, susername],
         function (error, results) {
             if (!error && results) {
                 const old_password = req.body.old_password;
                 const new_password = req.body.new_password;
                 conn.query(
-                    "UPDATE users SET password=? WHERE id=? AND password=?",
+                    "UPDATE users SET password= ? WHERE id= ? AND password= ?",
                     [new_password, sid, old_password],
                     function (error, new_results) {
                         if (!error) {
@@ -527,7 +532,7 @@ app.post("/adminSignIn", function (req, res, next) {
     const userName = req.body.userName;
     const password = req.body.password;
     conn.query(
-        "SELECT username, password FROM admin WHERE username=?",
+        "SELECT username, password FROM admin WHERE username= ?",
         [userName],
         function (error, results) {
             if (error) {
@@ -535,7 +540,7 @@ app.post("/adminSignIn", function (req, res, next) {
             } else {
                 if (results[0].password === password) {
                     conn.query(
-                        "SELECT id, username FROM admin WHERE username=?",
+                        "SELECT id, username FROM admin WHERE username= ?",
                         [userName],
                         function (error, results) {
                             if (error) res.sendStatus(404);
@@ -668,14 +673,14 @@ app.post("/admin_updatePrice", function (req, res, next) {
     const sid = req.cookies.cookuid;
     const susername = req.cookies.cookusername;
     conn.query(
-        "SELECT id, username FROM admin WHERE id= ? AND username= ?", [sid, susername], function (error, results) {
+        "SELECT id, username FROM admin WHERE id= ? AND username= ?", [sid, susername], function (error, userResults) {
             if (!error && results) {
                 const item_name = req.body.item_name;
                 const new_product_price = req.body.NewProdPrice;
-                conn.query("SELECT prod_name FROM products WHERE prod_name= ?", [item_name], function (error, results1) {
+                conn.query("SELECT prod_name FROM products WHERE prod_name= ?", [item_name], function (error, prodResults) {
                     if (!error) {
                         conn.query("UPDATE products SET prod_price= ? WHERE prod_name= ?", [new_product_price, item_name],
-                            function (error, results2) {
+                            function (error, updateResults) {
                                 if (!error) {
                                     res.redirect("adminHomePage");
                                 }
@@ -739,7 +744,7 @@ app.post("/adminView_Dispatch", function (req, res, next) {
     console.log(unique);
     for (let i = 0; i < unique.length; i++) {
         conn.query(
-            "SELECT * FROM orders WHERE order_id=?",
+            "SELECT * FROM orders WHERE order_id= ?",
             [unique[i]],
             function (error, resultsItem) {
                 console.log(resultsItem);
@@ -755,12 +760,12 @@ app.post("/adminView_Dispatch", function (req, res, next) {
                             resultsItem[0].price,
                             currDate,
                         ],
-                        function (error, results) {
+                        function (error, to_be_dispatchResults) {
                             if (!error) {
                                 conn.query(
-                                    "DELETE FROM orders WHERE order_id=?",
+                                    "DELETE FROM orders WHERE order_id= ?",
                                     [resultsItem[0].order_id],
-                                    function (error, results2) {
+                                    function (error, deletedResults) {
                                         if (error) {
                                             res.sendStatus(500).send("Something Went Wrong :( ");
                                         }
