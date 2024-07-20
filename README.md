@@ -4,6 +4,9 @@ DfitKlub is a straightforward, comprehensive web project designed to offer e-com
 
     Welcome to D'fitKlub where where fitness is redefined, and individuals are empowered on their journey to a healthier lifestyle. We're more than just a gym; we're a dedicated community helping you achieve fitness goals, offering personalized and sustainable programs for all fitness levels from elite athletes to home enthusiasts. Transform your life with us.
 
+## Demo Video Link
+https://www.linkedin.com/posts/kdev307_fullstack-webdevelopment-learninganddevelopment-activity-7186211808230150144-8L-J?utm_source=share&utm_medium=member_desktop
+
 ## Features
 
 -   The project comprises two interfaces: one for users and another for administrators.
@@ -42,7 +45,7 @@ DfitKlub is a straightforward, comprehensive web project designed to offer e-com
 
 ## Screenshots :
 
-Here are some of the screenshot of Food Ordering Website.
+Here are some of the screenshot of the full stack web application DfitKlub.
 
 1. Landing Page :<br><br>
    <img src="screenshots/hero-section.png"><br><br>
