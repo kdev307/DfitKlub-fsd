@@ -2,7 +2,7 @@
 
 DfitKlub is a straightforward, comprehensive web project designed to offer e-commerce services to a fictional organization with the same name. The website is intuitive and user-centric.
 
-    Welcome to D'fitKlub where where fitness is redefined, and individuals are empowered on their journey to a healthier lifestyle. We're more than just a gym; we're a dedicated community helping you achieve fitness goals, offering personalized and sustainable programs for all fitness levels from elite athletes to home enthusiasts. Transform your life with us.
+`Welcome to D'fitKlub where where fitness is redefined, and individuals are empowered on their journey to a healthier lifestyle. We're more than just a gym; we're a dedicated community helping you achieve fitness goals, offering personalized and sustainable programs for all fitness levels from elite athletes to home enthusiasts. Transform your life with us.`
 
 ## Demo Video Link
 
